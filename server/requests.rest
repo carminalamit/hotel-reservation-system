@@ -1,0 +1,49 @@
+POST http://localhost:3000/api/booking
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJuYW1lIjoiTWluYSIsImVtYWlsIjoibGFtaXRjYXJtaW5hQGdtYWlsLmNvbSIsImlhdCI6MTY3NzQ3Mzc1NiwiZXhwIjoxNjc3NDc0MzU2fQ.tc4udnsXQBlWABueDf0UcTmj5SpIMu_OCPz0o6fvA2w
+
+{
+    "room_id" : "7",
+    "check_in" : "2023-02-27",
+    "check_out" : "2023-02-27"
+} 
+
+### 
+POST http://localhost:3000/api/auth/login 
+Content-Type: application/json
+
+{
+   "email": "lamitcarmina@gmail.com",
+   "password" : "112233Mina"
+}
+
+###
+GET http://localhost:3000/api/room
+Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NzUwNzk0NzJ9.pHkww1HaIdDrfdsjPJBz2RqC7vBAHYRu8Qt1rPgXi6A
+
+{
+    "email":"bob@email.com",
+    "password":"bob"
+}
+
+###
+PUT http://localhost:3000/api/room/2
+Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJuYW1lIjoibWluYSIsImVtYWlsIjoibWluYUBnbWFpbC5jb20iLCJpYXQiOjE2NzUxNTc1Nzl9.qmAYbOfz3wu6i9_diNYpvJY5KucgFX6iUDPbzFpOdog
+
+{
+    "type" : "Family Room",
+    "rate" : "5000 per night",
+    "details" : "Single Room is only reserved for one guest. There is a bedroom with a single size bed and a private bathroom. Everything you need prepared for you: sheets and blankets, towels, soap and shampoo, hairdryer are provided.",
+    "max_count" : "1 guest",
+    "status" : "available",
+    "img_url" : "https://cdn.loewshotels.com/loewshotels.com-2466770763/cms/cache/v2/5f5a6e0d12749.jpg/1920x1080/fit/80/86e685af18659ee9ecca35c465603812.jpg",
+    "checkin_time" : "10:00",
+    "checkout_time" : "12:00"
+} 
+
+###
+DELETE http://localhost:3000/api/room/4
+Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJuYW1lIjoibWluYSIsImVtYWlsIjoibWluYUBnbWFpbC5jb20iLCJpYXQiOjE2NzUxNTc1Nzl9.qmAYbOfz3wu6i9_diNYpvJY5KucgFX6iUDPbzFpOdog

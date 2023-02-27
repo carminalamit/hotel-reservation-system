@@ -1,0 +1,147 @@
+body {
+  margin: 0;
+  display: flex;
+  max-width: 100vw;
+  min-height: 100vh;
+  font-family: "Cormorant Garamond", sans-serif !important;
+}
+
+/* Navbar Style */
+.nav {
+  background-color: black !important;
+  padding: 0 30px !important;
+}
+
+.nav-left {
+  margin-right: auto;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.nav-right {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+}
+
+/* Modal */
+.modal-font {
+  font-family: "Roboto", sans-serif;
+}
+
+/* Hero Style*/
+.hero {
+  height: 400px;
+  font-family: "Cormorant Garamond", sans-serif;
+}
+
+.text-s {
+  font-weight: 400;
+  font-size: xx-large;
+}
+
+/* Services Style */
+.services {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 30px;
+  font-family: "Roboto", sans-serif;
+}
+
+.text {
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+}
+
+.text-p {
+  font-size: 15px;
+  font-family: "Roboto", sans-serif;
+}
+
+.column {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Footer Style */
+.footer {
+  background-color: black !important;
+  color: white;
+  height: 200px;
+  padding: 30px;
+  font-size: 14px;
+  font-weight: lighter;
+  font-family: "Roboto", sans-serif;
+}
+
+.foot-column {
+  font-size: 15px;
+}
+
+.fontS {
+  font-size: 12px;
+}
+
+/* Dashboard Style */
+.container {
+  box-shadow: rgba(0, 0, 0, 0.35) 5px 10px 15px;
+}
+
+.details-fs {
+  font-size: 12px;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Room Pages */
+.cont {
+  display: flex;
+  /* margin: auto; */
+  margin-bottom: 20px;
+}
+
+.room-img {
+  height: 350px;
+  width: 100%;
+  border-radius: 10px;
+  margin: 40px 30px 20px 30px;
+}
+
+.room-text {
+  margin-left: 50px;
+  /* margin-top: 20px; */
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Date style */
+.date {
+  height: 280px;
+  /* margin-top: 20px; */
+  /* margin-left: 20px; */
+  border: 2px solid black;
+  
+  /* display: flex; */
+  /* justify-content: right; */
+  /* position: absolute; */
+  /* top: 125px; */
+  /* right: 100px; */
+}
+
+/* Admin Login Form */
+.wrapper {
+  height: 100vh;
+}
+
+.login {
+  width: 300px;
+  padding: 20px;
+  height: min-content;
+  border-radius: 10px;
+  color: black;
+  background-color: rgb(238, 241, 243);
+}
+
+/* Admin Panel */
+.admin-font {
+  font-family: "Roboto", sans-serif;
+}
