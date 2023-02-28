@@ -1,11 +1,16 @@
-POST http://localhost:3000/api/booking
+POST http://localhost:3000/api/room
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJuYW1lIjoiTWluYSIsImVtYWlsIjoibGFtaXRjYXJtaW5hQGdtYWlsLmNvbSIsImlhdCI6MTY3NzQ3Mzc1NiwiZXhwIjoxNjc3NDc0MzU2fQ.tc4udnsXQBlWABueDf0UcTmj5SpIMu_OCPz0o6fvA2w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJuYW1lIjoiTWluYSIsImVtYWlsIjoibGFtaXRjYXJtaW5hQGdtYWlsLmNvbSIsImlhdCI6MTY3NzU2NTYxOSwiZXhwIjoxNjc3NTY2MjE5fQ.rI-WoGpI01ELot_-TEJAmwSiWWWiJmmH0cNGTUVmblE
 
 {
-    "room_id" : "7",
-    "check_in" : "2023-02-27",
-    "check_out" : "2023-02-27"
+    "type" : "De luxe Room",
+    "rate" : "4,000 per night",
+    "details" : "lorem ipsum dolor",
+    "max_count" : "4 guests",
+    "status" : "available",
+    "img_url" : "https://static01.nyt.com/images/2019/03/24/travel/24trending-shophotels1/24trending-shophotels1-superJumbo.jpg",
+    "checkin_time" : "10:00",
+    "checkout_time" : "15:00"
 } 
 
 ### 

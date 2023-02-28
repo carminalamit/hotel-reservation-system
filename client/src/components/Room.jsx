@@ -77,7 +77,7 @@ function Room() {
           }}
         >
           <div className="row">
-            <Card.Img src={data.img_url} />
+            <Card.Img style={{width: "582px", height: "367px"}} src={data.img_url} />
           </div>
           <Card.Body>
             <Card.Title>{data.type}</Card.Title>

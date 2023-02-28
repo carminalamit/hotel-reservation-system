@@ -13,21 +13,7 @@ function Daterange() {
 
   const [openModal, setOpenModal] = useState(false);
 
-  const navigate = useNavigate()
-
-  // const getDate = async () => {
-  //   const res = await app.get("/api/booking");
-  //   console.log(res);
-  //   setDates(res.data.booking);
-  // };
-  // console.log(dates);
-
-  // const handleSubmit = async () => {
-  //   if (dates) return;
-  //   const res = await app.post("/api/booking", dates);
-  //   // onHide();
-  //   console.log(res);
-  // };
+  // const navigate = useNavigate()
 
   const handleSubmit = async () => {
     const dates = { check_in: checkIn, check_out: checkOut, room_id: id };
@@ -35,7 +21,7 @@ function Daterange() {
       if (!checkIn || !checkOut) return;
       const res = await app.post("/api/booking", dates);
       setOpenModal(true)
-    } catch (error) {navigation('/')}
+    } catch (error) {}
   };
 
   const handleClose = () => {

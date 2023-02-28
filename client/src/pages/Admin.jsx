@@ -1,26 +1,58 @@
 import React, { useEffect, useState } from "react";
 import Logout from "../components/Logout";
 import { Table, Tab, Tabs, Button } from "react-bootstrap";
-import { app } from '../../lib/axios-config';
+import { app } from "../../lib/axios-config";
+import { EditBookingModal } from "../components/EditBookingModal";
+import moment from "moment";
 
 function Admin() {
+  // update booking
+  const [showEditBooking, setShowEditBooking] = useState(false);
+  // const toggleShow = () => setShowEditBooking(!showEditBooking);
+
+  // const [showRegister, setShowRegister] = useState(false);
+
   // room data declaration
   const [roomData, roomDataChange] = useState([]);
-  const roomDataArray = Object.values(roomData);
+  // const roomDataArray = Object.values(roomData);
 
   // booking data declaration
   const [bookingData, bookingDataChange] = useState([]);
-  const bookingDataArray = Object.values(bookingData);
+  // const bookingDataArray = Object.values(bookingData);
+  // console.log(bookingData, bookingData)
 
   // users data declaration
   const [usersData, usersDataChange] = useState([]);
-  const usersDataArray = Object.values(usersData);
+  // const usersDataArray = Object.values(usersData);
+
+  const [selectedBookingData, setSelectedBookingData] = useState({})
+  console.log(selectedBookingData)
+  // update booking data
+  const editButton = (booking_id) => {
+    fetchBooking(booking_id)
+    setShowEditBooking(true)
+    console.log(booking_id)
+  }
+
+  const fetchBooking = async (booking_id) => {
+    try {
+      const { data } = await app.get(
+        `http://localhost:3000/api/booking/${booking_id}`
+      );
+      setSelectedBookingData(data.booking)
+      console.log(data.booking)
+    } catch (err) {
+      console.log(err.message);
+    }
+   
+  };
+
 
   // Get data room
   const fetchDataRoom = async () => {
     try {
       const { data } = await app.get("http://localhost:3000/api/room");
-      roomDataChange(data.room);
+      roomDataChange(data.room.sort((old,item)=>old.room_id-item.room_id));
       console.log(data.room);
     } catch (err) {
       console.log(err.message);
@@ -33,26 +65,25 @@ function Admin() {
       try {
         const res = await app.delete(
           `http://localhost:3000/api/room/${room_id}`
-        )
+        );
 
-        alert("Removed successfully!")
-        window.location.reload()
+        alert("Removed successfully!");
+        window.location.reload();
       } catch (err) {
-        console.log(err.message)
+        console.log(err.message);
       }
     }
-  }
-
+  };
 
   // Get data booking
   const fetchDataBooking = async () => {
     try {
       const { data } = await app.get("http://localhost:3000/api/booking");
-      bookingDataChange(data.booking);
+      bookingDataChange(data.booking.sort((old,item)=>old.booking_id-item.booking_id));
       console.log(data.booking);
     } catch (err) {
       console.log(err.message);
-    } 
+    }
   };
 
   // Delete data booking
@@ -61,22 +92,21 @@ function Admin() {
       try {
         const res = await app.delete(
           `http://localhost:3000/api/booking/${booking_id}`
-        )
+        );
 
-        alert("Removed successfully!")
-        window.location.reload()
+        alert("Removed successfully!");
+        window.location.reload();
       } catch (err) {
-        console.log(err.message)
+        console.log(err.message);
       }
     }
-  }
-
+  };
 
   // Get data users
   const fetchDataUsers = async () => {
     try {
       const { data } = await app.get("http://localhost:3000/api/users");
-      usersDataChange(data.users);
+      usersDataChange(data.users.sort((old,item)=>old.user_id-item.user_id));
       console.log(data.users);
     } catch (err) {
       console.log(err.message);
@@ -89,16 +119,15 @@ function Admin() {
       try {
         const res = await app.delete(
           `http://localhost:3000/api/users/${user_id}`
-        )
+        );
 
-        alert("Removed successfully!")
-        window.location.reload()
+        alert("Removed successfully!");
+        window.location.reload();
       } catch (err) {
-        console.log(err.message)
+        console.log(err.message);
       }
     }
-  }
-
+  };
 
   useEffect(() => {
     fetchDataRoom();
@@ -139,24 +168,28 @@ function Admin() {
                   </tr>
                 </thead>
                 <tbody>
-                  {bookingDataArray &&
-                    bookingDataArray.map((item) => (
+                  {bookingData &&
+                    bookingData.map((item) => (
                       <tr key={item.booking_id}>
                         <td>{item.booking_id}</td>
                         <td>{item.user_id}</td>
                         <td>{item.room_id}</td>
-                        <td>{item.check_in}</td>
-                        <td>{item.check_out}</td>
+                        <td>{moment(item.check_in).format('LL')}</td>
+                        <td>{moment(item.check_out).format('LL')}</td>
                         <td>
-                          <Button
+                          {/* <Button
                             className="bg-black text-white"
                             variant="custom"
+                            onClick={setShowAddBooking}
                           >
                             Add
-                          </Button>
+                          </Button> */}
                           <Button
                             className="bg-black text-white mx-2"
                             variant="custom"
+                            onClick={() => {
+                              editButton(item.booking_id);
+                            }}
                           >
                             Edit
                           </Button>
@@ -164,7 +197,7 @@ function Admin() {
                             className="bg-black text-white"
                             variant="custom"
                             onClick={() => {
-                              deleteBooking(item.booking_id)
+                              deleteBooking(item.booking_id);
                             }}
                           >
                             Delete
@@ -180,60 +213,62 @@ function Admin() {
               title="Rooms"
               tabClassName="text-light bg-dark"
             >
-              <Table striped bordered hover variant="dark">
-                <thead>
-                  <tr>
-                    <th>Room Id</th>
-                    <th>Type</th>
-                    <th>Rate</th>
-                    <th>Details</th>
-                    <th>Max count</th>
-                    <th>Img url</th>
-                    <th>Checkin time</th>
-                    <th>Checkout time</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {roomDataArray &&
-                    roomDataArray.map((item) => (
-                      <tr key={item.room_id}>
-                        <td>{item.room_id}</td>
-                        <td>{item.type}</td>
-                        <td>{item.rate}</td>
-                        <td>{item.details}</td>
-                        <td>{item.max_count}</td>
+              <div style={{maxWidth: "98vw", overflow: "auto"}}>
+                <Table striped bordered hover variant="dark">
+                  <thead>
+                    <tr>
+                      <th>Room Id</th>
+                      <th>Type</th>
+                      <th>Rate</th>
+                      <th>Details</th>
+                      <th>Max count</th>
+                      <th>Img url</th>
+                      <th>Checkin time</th>
+                      <th>Checkout time</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {roomData &&
+                      roomData.map((item) => (
+                        <tr key={item.room_id}>
+                          <td>{item.room_id}</td>
+                          <td>{item.type}</td>
+                          <td>{item.rate}</td>
+                          <td style={{ minWidth: "600px" }}>{item.details}</td>
+                          <td>{item.max_count}</td>
 
-                        <td>{item.img_url}</td>
-                        <td>{item.checkin_time}</td>
-                        <td>{item.checkout_time}</td>
-                        <td>
-                          <Button
-                            className="bg-black text-white"
-                            variant="custom"
-                          >
-                            Add
-                          </Button>
-                          <Button
-                            className="bg-black text-white mx-2"
-                            variant="custom"
-                          >
-                            Edit
-                          </Button>
-                          <Button
-                            className="bg-black text-white"
-                            variant="custom"
-                            onClick={() => {
-                              deleteRoom(item.room_id)
-                            }}
-                          >
-                            Delete
-                          </Button>
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </Table>
+                          <td>{item.img_url}</td>
+                          <td>{item.checkin_time}</td>
+                          <td>{item.checkout_time}</td>
+                          <td style={{ minWidth: "212px" }}>
+                            <Button
+                              className="bg-black text-white"
+                              variant="custom"
+                            >
+                              Add
+                            </Button>
+                            <Button
+                              className="bg-black text-white mx-2"
+                              variant="custom"
+                            >
+                              Edit
+                            </Button>
+                            <Button
+                              className="bg-black text-white"
+                              variant="custom"
+                              onClick={() => {
+                                deleteRoom(item.room_id);
+                              }}
+                            >
+                              Delete
+                            </Button>
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </Table>
+              </div>
             </Tab>
             <Tab
               eventKey="users"
@@ -248,21 +283,21 @@ function Admin() {
                     <th>Name</th>
                     <th>Phone</th>
                     <th>Email</th>
-                    <th>Password</th>
-                    <th>Action</th>
+                    {/* <th>Password</th> */}
+                    {/* <th>Action</th> */}
                   </tr>
                 </thead>
                 <tbody>
-                  {usersDataArray &&
-                    usersDataArray.map((item) => (
+                  {usersData &&
+                    usersData.map((item) => (
                       <tr key={item.user_id}>
                         <td>{item.user_id}</td>
                         <td>{item.role}</td>
                         <td>{item.name}</td>
                         <td>{item.phone}</td>
                         <td>{item.email}</td>
-                        <td>{item.password}</td>
-                        <td>
+                        {/* <td>{item.password}</td> */}
+                        {/* <td>
                           <Button
                             className="bg-black text-white"
                             variant="custom"
@@ -284,7 +319,7 @@ function Admin() {
                           >
                             Delete
                           </Button>
-                        </td>
+                        </td> */}
                       </tr>
                     ))}
                 </tbody>
@@ -293,6 +328,7 @@ function Admin() {
           </Tabs>
         </div>
       </div>
+      <EditBookingModal show={showEditBooking} selectedBookingData={selectedBookingData} onHide={() => setShowEditBooking(false)} />
     </div>
   );
 }

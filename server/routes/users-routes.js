@@ -9,7 +9,7 @@ import { authenticateToken } from "../middleware/authorization.js";
 const router = express.Router();
 
 // READ users listing
-router.get("/", async (req, res) => {
+router.get("/", authenticateToken, async (req, res) => { // authenticateToken
   try {
     // console.log(req.cookies);
     const users = await pool.query("SELECT * FROM users");

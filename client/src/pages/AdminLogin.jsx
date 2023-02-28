@@ -18,10 +18,10 @@ function AdminLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { data } = await app.post("/api/auth/login", formData);
-    const { jwt } = data;
+    const { accessToken } = data;
 
-    localStorage.setItem("authenticateToken", jwt);
-    app.defaults.headers.common["Authorization"] = "Bearer " + jwt;
+    localStorage.setItem("authenticateToken", accessToken);
+    app.defaults.headers.common["Authorization"] = "Bearer " + accessToken;
 
     // onHide();
     navigate("/admin/panel");

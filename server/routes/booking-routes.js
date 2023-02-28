@@ -17,9 +17,9 @@ router.get("/", async (req, res) => {
 router.get("/:booking_id", async (req, res) => {
   try {
     const booking = await pool.query("SELECT * FROM booking WHERE booking_id=$1", [
-      req.params._id,
+      req.params.booking_id,
     ]);
-    res.json({ booking: booking.rows });
+    res.json({ booking: booking.rows[0] });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

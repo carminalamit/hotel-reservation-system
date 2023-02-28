@@ -26,24 +26,17 @@
 // export default StaticExample;
 
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import { FaCheckCircle } from "react-icons/fa";
 import Modal from 'react-bootstrap/Modal';
 
 function BookModals({show, handleClose}) {
   return (
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title className='text-p'>Welcome to The Richmonde Hotel & Suites</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
+        <Modal.Body className='text-p'>Thank you for booking with us. Your room was booked successfull!</Modal.Body>
+        <Modal.Footer><FaCheckCircle /></Modal.Footer>
       </Modal>
   );
 }
