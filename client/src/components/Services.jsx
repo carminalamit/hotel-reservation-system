@@ -5,7 +5,7 @@ import { Container, Row, Col } from "react-bootstrap";
 
 function AutoLayoutExample() {
   return (
-    <Container>
+    <Container style={{boxShadow: "none"}}>
       <h3 className="services">Services</h3>
       <Row>
         <Col className="column">

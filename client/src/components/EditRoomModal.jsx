@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { app } from "../../lib/axios-config";
 
 const initialData = {
+  room_id: "",
   type: "",
   rate: "",
   details: "",
@@ -14,31 +15,30 @@ const initialData = {
   checkout_time: "",
 };
 
-export function AddRoomModal({ show, onHide }) {
+export function EditRoomModal({ show, onHide, selectedRoomData }) {
   // Edit data booking
-  const [roomDetail, roomDetailChange] = useState(initialData);
-  console.log(roomDetail)
+  const [roomDetail, roomDetailChange] = useState({});
 
   const handleSubmit = async () => {
-    const res = await app.post("/api/room", roomDetail);
-    alert("Added successfully!");
+    const res = await app.put(`/api/room/${roomDetail.room_id}`, roomDetail);
+    alert("Updated successfully!");
     window.location.reload();
     onHide();
   };
 
-//   useEffect(() => {
-//     roomDetailChange(selectedRoomData);
-//     console.log(selectedRoomData);
-//   }, [selectedRoomData]);
+  useEffect(() => {
+    roomDetailChange(selectedRoomData);
+    console.log(selectedRoomData);
+  }, [selectedRoomData]);
 
   return (
     <Modal className="modal-font" show={show} onHide={onHide}>
       <Modal.Header closeButton>
-        <Modal.Title>Add Room</Modal.Title>
+        <Modal.Title>Edit details</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form className="needs-validation">
-          {/* <Form.Group
+          <Form.Group
             className="mb-3 was-validated"
             controlId="exampleForm.ControlInput2"
           >
@@ -47,7 +47,7 @@ export function AddRoomModal({ show, onHide }) {
               className="border-dark"
               name="room_id"
               type="integer"
-              value={roomDetail}
+              value={roomDetail.room_id}
               onChange={(e) =>
                 roomDetailChange({
                   ...roomDetail,
@@ -56,7 +56,7 @@ export function AddRoomModal({ show, onHide }) {
               }
               disabled
             />
-          </Form.Group> */}
+          </Form.Group>
           <Form.Group
             className="mb-3 was-validated"
             controlId="exampleForm.ControlInput4"
@@ -198,7 +198,7 @@ export function AddRoomModal({ show, onHide }) {
           variant="custom"
           onClick={handleSubmit}
         >
-          Add
+          Update changes
         </Button>
       </Modal.Footer>
     </Modal>

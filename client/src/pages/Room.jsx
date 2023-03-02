@@ -42,7 +42,7 @@ function Room() {
       try {
         const res = await app.get(`/api/room/${id}`);
         console.log(res);
-        setRoom(res.data?.room[0]);
+        setRoom(res.data?.room);
       } catch (error) {
         console.error(error);
       }

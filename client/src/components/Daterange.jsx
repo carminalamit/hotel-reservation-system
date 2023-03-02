@@ -1,11 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import { app } from "../../lib/axios-config";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import BookModal from "../components/BookModals";
 import BookModals from "../components/BookModals";
+import DatePicker from "react-datepicker";
+import { subDays, addDays, format } from 'date-fns';
+import "react-datepicker/dist/react-datepicker.css";
 
 function Daterange() {
+  
+
+  // To subtract days from a date
+  const newDate = subDays(new Date(), 5); // subtract 5 days from today's date
+  console.log(newDate)
+
+  // To add days to a date
+  const newDate2 = addDays(new Date(), 5); // add 5 days to today's date
+
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(null);
+  const [excludedDate, setExcludedDate] = useState([])
+
+  const onChange = (dates) => {
+    const [start, end] = dates;
+    setStartDate(start);
+    setEndDate(end);
+  };
+
   const { id } = useParams();
   const [checkIn, setCheckIn] = useState(null);
   const [checkOut, setCheckOut] = useState(null);
@@ -20,7 +42,7 @@ function Daterange() {
     try {
       if (!checkIn || !checkOut) return;
       const res = await app.post("/api/booking", dates);
-      setOpenModal(true)
+      setOpenModal(true);
     } catch (error) {}
   };
 
@@ -28,9 +50,28 @@ function Daterange() {
     setOpenModal(false);
   };
 
-  // useEffect(() => {
-  //   getDate();
-  // }, []);
+
+  const getBookingByRoomId = async () => {
+    try {
+      const res = await app.get(`/api/booking/room-id/${id}`)
+      console.log(res)
+      const bookings = res.data?.booking
+      const data = bookings.map(booking => {
+        console.log(new Date(booking.check_in))
+        return {start:new Date(booking.check_in), end:new Date(booking.check_out)}
+      })
+      setExcludedDate(data)
+      console.log(data)
+    } catch (error) {
+      
+    }
+  }
+
+
+  useEffect(() => {
+    getBookingByRoomId()
+  }, []);
+
 
   return (
     <div className="date">
@@ -41,7 +82,7 @@ function Daterange() {
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
               <Form.Label>Check in</Form.Label>
-              <Form.Control
+              {/* <Form.Control
                 style={{ width: "200px" }}
                 value={checkIn}
                 className="border-dark"
@@ -53,9 +94,9 @@ function Daterange() {
                 required
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
-              <Form.Label>Check out</Form.Label>
-              <Form.Control
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput3"> */}
+              {/* <Form.Label>Check out</Form.Label> */}
+              {/* <Form.Control
                 style={{ width: "200px" }}
                 value={checkOut}
                 className="border-dark"
@@ -65,6 +106,21 @@ function Daterange() {
                 onChange={(event) => setCheckOut(event.target.value)}
                 autoComplete="number"
                 required
+              /> */}
+              <DatePicker
+                selected={startDate}
+                // value={checkIn}
+                onChange={onChange}
+                excludeDateIntervals = {excludedDate}
+                selectsRange
+              />
+              <Form.Label>Check out</Form.Label>
+              <DatePicker
+                selected={endDate}
+                // value={checkOut}
+                onChange={onChange}
+                excludeDateIntervals = {excludedDate}
+                selectsRange
               />
             </Form.Group>
           </Form>

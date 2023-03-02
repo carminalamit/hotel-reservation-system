@@ -39,6 +39,7 @@ router.post("/", authenticateToken, async (req, res) => {
   }
 });
 
+
 // UPDATE
 router.put("/:booking_id", async (req, res) => {
     try {
@@ -67,5 +68,19 @@ router.delete("/:booking_id", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+router.get("/room-id/:room_id", async (req, res) => {
+  try {
+    const booking = await pool.query("select * from booking where room_id=$1", [
+      req.params.room_id
+    ])
+    console.log(req.params.room_id)
+    res.json({ booking: booking.rows });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+})
+
+
 
 export default router;

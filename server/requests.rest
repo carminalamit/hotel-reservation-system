@@ -23,9 +23,9 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/api/room
+GET http://localhost:3000/api/room/7
 Content-Type: application/json
-# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NzUwNzk0NzJ9.pHkww1HaIdDrfdsjPJBz2RqC7vBAHYRu8Qt1rPgXi6A
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJuYW1lIjoiTWluYSIsImVtYWlsIjoibGFtaXRjYXJtaW5hQGdtYWlsLmNvbSIsImlhdCI6MTY3NzY1Mjc2NywiZXhwIjoxNjc3NjUzMzY3fQ.nPuHXX_u906sQTpii6-RLtKiYboxOZzRjTMgHMFikos
 
 {
     "email":"bob@email.com",
@@ -33,13 +33,13 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:3000/api/room/2
+PUT http://localhost:3000/api/room/7
 Content-Type: application/json
 # Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJuYW1lIjoibWluYSIsImVtYWlsIjoibWluYUBnbWFpbC5jb20iLCJpYXQiOjE2NzUxNTc1Nzl9.qmAYbOfz3wu6i9_diNYpvJY5KucgFX6iUDPbzFpOdog
 
 {
-    "type" : "Family Room",
-    "rate" : "5000 per night",
+    "type" : "Single Room",
+    "rate" : "1500 per night",
     "details" : "Single Room is only reserved for one guest. There is a bedroom with a single size bed and a private bathroom. Everything you need prepared for you: sheets and blankets, towels, soap and shampoo, hairdryer are provided.",
     "max_count" : "1 guest",
     "status" : "available",

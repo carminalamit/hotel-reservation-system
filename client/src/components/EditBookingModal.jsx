@@ -1,6 +1,5 @@
 import { Modal, Form, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import moment from "moment"
 import { app } from "../../lib/axios-config";
 
 const initialData = {
@@ -22,6 +21,8 @@ export function EditBookingModal({ show, onHide, selectedBookingData }) {
 
   const handleSubmit = async () => {
     const res = await app.put(`/api/booking/${bookingDetail.booking_id}`, bookingDetail);
+    alert("Updated successfully!");
+    window.location.reload();
     onHide();
   };
 

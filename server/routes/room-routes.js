@@ -18,7 +18,7 @@ router.get("/:room_id", async (req, res) => {
     const room = await pool.query("SELECT * FROM room WHERE room_id=$1", [
       req.params.room_id,
     ]);
-    res.json({ room: room.rows });
+    res.json({ room: room.rows[0] });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -42,7 +42,7 @@ router.post("/", async (req, res) => {
 router.put("/:room_id", async (req, res) => {
     try {
       const newRoom = await pool.query(
-        "update room set type=$1, rate=$2, details=$3, count=$4, status=$5, img_url=$6, checkin_time=$7, checkout_time=$8 where room_id=$9",
+        "update room set type=$1, rate=$2, details=$3, max_count=$4, status=$5, img_url=$6, checkin_time=$7, checkout_time=$8 where room_id=$9",
         [
           req.body.type,
           req.body.rate,
