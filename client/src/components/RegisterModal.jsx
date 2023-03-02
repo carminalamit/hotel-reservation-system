@@ -30,10 +30,10 @@ export function RegisterModal({ show, onHide }) {
 			</Modal.Header>
 			<Modal.Body>
 				<Form className="needs-validation">
-					<Form.Group className="mb-3 was-validated" controlId="exampleForm.ControlInput2">
+					<Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
 						<Form.Label>Name</Form.Label>
 						<Form.Control
-							className="border-dark"
+							className="was-validated border-dark"
 							name="name"
 							type="text"
 							placeholder="input name"
@@ -44,10 +44,10 @@ export function RegisterModal({ show, onHide }) {
 						/>
 						<div className="invalid-feedback">Please enter your name</div>
 					</Form.Group>
-					<Form.Group className="mb-3 was-validated" controlId="exampleForm.ControlInput3">
+					<Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
 						<Form.Label>Phone Number</Form.Label>
 						<Form.Control
-							className="border-dark"
+							className="was-validated border-dark"
 							name="phoneNumber"
 							type="integer"
 							placeholder="09*********"
@@ -58,10 +58,10 @@ export function RegisterModal({ show, onHide }) {
 						/>
 						<div className="invalid-feedback">Please enter your number</div>
 					</Form.Group>
-					<Form.Group className="mb-3 was-validated" controlId="exampleForm.ControlInput4">
+					<Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
 						<Form.Label>Email</Form.Label>
 						<Form.Control
-							className="border-dark"
+							className="was-validated border-dark"
 							name="email"
 							type="email"
 							placeholder="email@gmail.com"
@@ -72,12 +72,13 @@ export function RegisterModal({ show, onHide }) {
 						/>
 						<div className="invalid-feedback">Please enter your email</div>
 					</Form.Group>
-					<Form.Group className="mb-3 was-validated" controlId="exampleForm.ControlInput5">
+					<Form.Group className="mb-3" controlId="exampleForm.ControlInput5">
 						<Form.Label>Password</Form.Label>
 						<Form.Control
-							className="border-dark"
+							className="was-validated border-dark"
 							name="password"
 							type="password"
+							placeholder="*********"
 							value={formData.password}
 							onChange={handleOnChange}
 							autoComplete="password"
@@ -85,15 +86,16 @@ export function RegisterModal({ show, onHide }) {
 						/>
 						<div className="invalid-feedback">Please enter your password</div>
 					</Form.Group>
-					<Form.Group className="mb-3 was-validated" controlId="exampleForm.ControlInput6">
+					<Form.Group className="mb-3" controlId="exampleForm.ControlInput6">
 						<Form.Label>Confirm Password</Form.Label>
 						<Form.Control
-							className="border-dark"
+							className="was-validated border-dark"
 							name="confirmPassword"
 							type="password"
+							placeholder="*********"
 							value={formData.confirmPassword}
 							onChange={handleOnChange}
-							autoComplete="confirmpassword"
+							autoComplete="confirmpassword" 
 							required
 						/>
 						<div className="invalid-feedback">Please confirm password</div>

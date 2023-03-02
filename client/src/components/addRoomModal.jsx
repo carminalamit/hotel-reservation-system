@@ -37,7 +37,7 @@ export function AddRoomModal({ show, onHide }) {
         <Modal.Title>Add Room</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form className="needs-validation">
+        <Form>
           {/* <Form.Group
             className="mb-3 was-validated"
             controlId="exampleForm.ControlInput2"
@@ -58,7 +58,7 @@ export function AddRoomModal({ show, onHide }) {
             />
           </Form.Group> */}
           <Form.Group
-            className="mb-3 was-validated"
+            className="mb-3"
             controlId="exampleForm.ControlInput4"
           >
             <Form.Label>Type</Form.Label>
@@ -77,7 +77,7 @@ export function AddRoomModal({ show, onHide }) {
             />
           </Form.Group>
           <Form.Group
-            className="mb-3 was-validated"
+            className="mb-3"
             controlId="exampleForm.ControlInput4"
           >
             <Form.Label>Rate</Form.Label>
@@ -96,7 +96,7 @@ export function AddRoomModal({ show, onHide }) {
             />
           </Form.Group>
           <Form.Group
-            className="mb-3 was-validated"
+            className="mb-3"
             controlId="exampleForm.ControlInput4"
           >
             <Form.Label>Details</Form.Label>
@@ -115,7 +115,7 @@ export function AddRoomModal({ show, onHide }) {
             />
           </Form.Group>
           <Form.Group
-            className="mb-3 was-validated"
+            className="mb-3"
             controlId="exampleForm.ControlInput4"
           >
             <Form.Label>Maximun guests</Form.Label>
@@ -134,10 +134,10 @@ export function AddRoomModal({ show, onHide }) {
             />
           </Form.Group>
           <Form.Group
-            className="mb-3 was-validated"
+            className="mb-3"
             controlId="exampleForm.ControlInput4"
           >
-            <Form.Label>Img url</Form.Label>
+            <Form.Label>Image</Form.Label>
             <Form.Control
               className="border-dark"
               name="img_url"
@@ -153,7 +153,7 @@ export function AddRoomModal({ show, onHide }) {
             />
           </Form.Group>
           <Form.Group
-            className="mb-3 was-validated"
+            className="mb-3"
             controlId="exampleForm.ControlInput4"
           >
             <Form.Label>Checkin Time</Form.Label>
@@ -172,7 +172,7 @@ export function AddRoomModal({ show, onHide }) {
             />
           </Form.Group>
           <Form.Group
-            className="mb-3 was-validated"
+            className="mb-3"
             controlId="exampleForm.ControlInput4"
           >
             <Form.Label>Checkout Time</Form.Label>

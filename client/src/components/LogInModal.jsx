@@ -36,26 +36,26 @@ export function LoginModal({ show, onHide }) {
 			</Modal.Header>
 			<Modal.Body>
 				<Form className="needs-validation" onSubmit={handleSubmit}>
-					<Form.Group className="mb-3 was-validated">
+					<Form.Group className="mb-3">
 						<Form.Label>Email address</Form.Label>
 						<Form.Control
-							className="border-dark"
+							className="was-validated border-dark"
 							type="email"
 							placeholder="name@example.com"
 							name="email"
 							value={formData.email}
 							onChange={handleOnChange}
-							autoComplete="off"
+							autoComplete="email"
 							required
 						/>
 						<div className="invalid-feedback">Please enter your email</div>
 					</Form.Group>
-					<Form.Group className="mb-3 was-validated">
+					<Form.Group className="mb-3">
 						<Form.Label>Password</Form.Label>
 						<Form.Control
-							className="border-dark"
+							className="was-validated border-dark"
 							type="password"
-							autoComplete="password"
+							placeholder="*********"
 							name="password"
 							value={formData.password}
 							onChange={handleOnChange}

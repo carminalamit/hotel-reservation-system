@@ -94,37 +94,37 @@ body {
 /* Room Pages */
 .cont {
   display: flex;
-  /* margin: auto; */
-  margin-bottom: 20px;
+  margin: 85px 28px;
 }
 
 .room-img {
-  height: 350px;
-  width: 100%;
-  border-radius: 10px;
-  margin: 40px 30px 20px 30px;
+  display: block;
+  height: 367px;
+  width: 40vw;
+  margin: 15px;
+  border-radius: 8px;
 }
 
 .room-text {
-  margin-left: 50px;
+  margin-top: 40px;
+  width: 25vw;
   /* margin-top: 20px; */
-  font-size: 14px;
-  font-weight: 500;
+  font-size: .8rem;
+  font-weight: 400;
   font-family: "Roboto", sans-serif;
 }
 
 /* Date style */
 .date {
-  height: 280px;
-  /* margin-top: 20px; */
+  height: 250px;
+  /* width: 25vw; */
+  /* margin-top: -276px; */
   /* margin-left: 20px; */
-  border: 2px solid black;
-  
-  /* display: flex; */
-  /* justify-content: right; */
+  border-radius: 8px;
+  border: 1px solid black;
   /* position: absolute; */
-  /* top: 125px; */
-  /* right: 100px; */
+  bottom: 20px;
+  left: 100px;
 }
 
 /* Admin Login Form */
@@ -144,4 +144,11 @@ body {
 /* Admin Panel */
 .admin-font {
   font-family: "Roboto", sans-serif;
+}
+
+
+@media (max-width: 1159px) {
+  .room-text {
+    background-color: red;
+  }
 }

@@ -272,7 +272,7 @@ function Admin() {
                       <th>Rate</th>
                       <th>Details</th>
                       <th>Max count</th>
-                      <th>Img url</th>
+                      <th>Image</th>
                       <th>Checkin time</th>
                       <th>Checkout time</th>
                       <th>Action</th>

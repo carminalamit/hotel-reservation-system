@@ -5,32 +5,34 @@ import { useParams } from "react-router-dom";
 import BookModal from "../components/BookModals";
 import BookModals from "../components/BookModals";
 import DatePicker from "react-datepicker";
-import { subDays, addDays, format } from 'date-fns';
+import { subDays, addDays, format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 
 function Daterange() {
-  
-
   // To subtract days from a date
   const newDate = subDays(new Date(), 5); // subtract 5 days from today's date
-  console.log(newDate)
+  console.log(newDate);
 
   // To add days to a date
   const newDate2 = addDays(new Date(), 5); // add 5 days to today's date
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
-  const [excludedDate, setExcludedDate] = useState([])
+  const [excludedDate, setExcludedDate] = useState([]);
 
-  const onChange = (dates) => {
-    const [start, end] = dates;
-    setStartDate(start);
-    setEndDate(end);
+  const onChangeCheckIn = (date) => {
+    setCheckIn(date)
   };
+
+  const onChangeCheckOut = (date) => {
+    setCheckOut(date)
+  };
+ 
 
   const { id } = useParams();
   const [checkIn, setCheckIn] = useState(null);
   const [checkOut, setCheckOut] = useState(null);
+  console.log(checkIn, checkOut)
   const [roomId, setRoomId] = useState(null);
 
   const [openModal, setOpenModal] = useState(false);
@@ -50,32 +52,30 @@ function Daterange() {
     setOpenModal(false);
   };
 
-
   const getBookingByRoomId = async () => {
     try {
-      const res = await app.get(`/api/booking/room-id/${id}`)
-      console.log(res)
-      const bookings = res.data?.booking
-      const data = bookings.map(booking => {
-        console.log(new Date(booking.check_in))
-        return {start:new Date(booking.check_in), end:new Date(booking.check_out)}
-      })
-      setExcludedDate(data)
-      console.log(data)
-    } catch (error) {
-      
-    }
-  }
-
+      const res = await app.get(`/api/booking/room-id/${id}`);
+      console.log(res);
+      const bookings = res.data?.booking;
+      const data = bookings.map((booking) => {
+        console.log(new Date(booking.check_in));
+        return {
+          start: new Date(booking.check_in),
+          end: new Date(booking.check_out),
+        };
+      });
+      setExcludedDate(data);
+      console.log(data);
+    } catch (error) {}
+  };
 
   useEffect(() => {
-    getBookingByRoomId()
+    getBookingByRoomId();
   }, []);
-
 
   return (
     <div className="date">
-      <div className="" style={{ width: "250px" }}>
+      <div style={{ width: "250px" }}>
         <BookModals show={openModal} handleClose={handleClose} />
         <div className="details-fs" style={{ margin: 20 }}>
           <h6>Available dates</h6>
@@ -107,21 +107,24 @@ function Daterange() {
                 autoComplete="number"
                 required
               /> */}
-              <DatePicker
-                selected={startDate}
-                // value={checkIn}
-                onChange={onChange}
-                excludeDateIntervals = {excludedDate}
-                selectsRange
-              />
-              <Form.Label>Check out</Form.Label>
-              <DatePicker
-                selected={endDate}
-                // value={checkOut}
-                onChange={onChange}
-                excludeDateIntervals = {excludedDate}
-                selectsRange
-              />
+              <div>
+                <DatePicker
+                  // selected={startDate}
+                  selected={checkIn}
+                  onChange={onChangeCheckIn}
+                  excludeDateIntervals={excludedDate}
+                  // selectsRange
+                />
+                <Form.Label>Check out</Form.Label>
+                <DatePicker
+                  style
+                  // selected={endDate}
+                  selected={checkOut}
+                  onChange={onChangeCheckOut}
+                  excludeDateIntervals={excludedDate}
+                  // selectsRange
+                />
+              </div>
             </Form.Group>
           </Form>
           <Button
@@ -129,7 +132,7 @@ function Daterange() {
             variant="custom"
             onClick={handleSubmit}
           >
-            Reserve now
+            Book now
           </Button>
         </div>
       </div>

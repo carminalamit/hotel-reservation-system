@@ -29,6 +29,14 @@ router.get("/:booking_id", async (req, res) => {
 router.post("/", authenticateToken, async (req, res) => {
   console.log(req.user)
   try {
+    const {rows} = await pool.query("SELECT COUNT(*) FROM booking WHERE room_id = $3 AND ( check_in >= $1 AND check_out <= $2 OR check_in >= $1 and check_out >= $1)", 
+    [req.body.check_in, req.body.check_out, req.body.room_id])
+    console.log(rows)
+    if (parseInt(rows[0]?.count)) {
+      console.log(rows)
+      return res.status(500).json({ error: "room is not available" });
+    }  
+
     const newBooking = await pool.query(
       "INSERT INTO booking (check_in,check_out,user_id,room_id) VALUES ($1,$2,$3,$4)",
       [req.body.check_in, req.body.check_out, req.user.user_id, req.body.room_id]
@@ -80,7 +88,6 @@ router.get("/room-id/:room_id", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 })
-
 
 
 export default router;

@@ -102,6 +102,7 @@ export function EditRoomModal({ show, onHide, selectedRoomData }) {
             <Form.Label>Details</Form.Label>
             <Form.Control
               className="border-dark"
+              as="textarea"
               name="details"
               type="text"
               value={roomDetail.details}

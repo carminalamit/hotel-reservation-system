@@ -11,6 +11,7 @@ const initialData = {
 
 function AdminLogin() {
   const [formData, setFormData] = useState(initialData);
+  const [errors, setErrors] = useState({})
   const navigate = useNavigate();
   const handleOnChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -34,25 +35,26 @@ function AdminLogin() {
           <h3 className="mb-3 modal-font">
             Login
           </h3>
-          <Form.Group className="form-group was-validated mb-2 modal-font">
+          <Form.Group className="form-group mb-2 modal-font">
             <Form.Label>Email address</Form.Label>
             <Form.Control
-              className="border-dark"
+              className="was-validated border-dark"
               type="email"
               placeholder="name@example.com"
               name="email"
               value={formData.email}
               onChange={handleOnChange}
-              autoComplete="off"
+              autoComplete="email"
               required
             />
             <div className="invalid-feedback">Please enter your email</div>
           </Form.Group>
-          <Form.Group className="form-group was-validated mb-2 modal-font">
+          <Form.Group className="form-group mb-2 modal-font">
             <Form.Label>Password</Form.Label>
             <Form.Control
-              className="border-dark"
+              className="was-validated border-dark"
               type="password"
+              placeholder="********"
               autoComplete="password"
               name="password"
               value={formData.password}
