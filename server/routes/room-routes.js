@@ -1,7 +1,18 @@
 import express from "express";
 import pool from "../db.js";
+import multer from "multer";
 
 const router = express.Router();
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  },
+});
+const upload = multer({ storage });
 
 // READ
 router.get("/", async (req, res) => {
@@ -25,9 +36,10 @@ router.get("/:room_id", async (req, res) => {
 });
 
 // CREATE 
-router.post("/", async (req, res) => {
-  console.log(req.body)
+router.post("/", upload.single("image"), async (req, res) => {
+  console.log(req.files)
   try {
+    // const imagePath = '/uploads/' + req.file.filename;
     const newRoom = await pool.query(
       "INSERT INTO room (type,rate,details,max_count,status,img_url,checkin_time,checkout_time) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)",
       [req.body.type, req.body.rate, req.body.details, req.body.max_count, req.body.status, req.body.img_url, req.body.checkin_time, req.body.checkout_time]

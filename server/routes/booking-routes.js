@@ -1,5 +1,6 @@
 import express from "express";
 import pool from "../db.js";
+import { parseISO } from "date-fns";
 import { authenticateToken } from "../middleware/authorization.js";
 
 const router = express.Router();
@@ -27,10 +28,10 @@ router.get("/:booking_id", async (req, res) => {
 
 // CREATE 
 router.post("/", authenticateToken, async (req, res) => {
-  console.log(req.user)
+  console.log(req.body)
   try {
-    const {rows} = await pool.query("SELECT COUNT(*) FROM booking WHERE room_id = $3 AND ( check_in >= $1 AND check_out <= $2 OR check_in >= $1 and check_out >= $1)", 
-    [req.body.check_in, req.body.check_out, req.body.room_id])
+    const {rows} = await pool.query("SELECT COUNT(*) FROM booking WHERE room_id = $3 AND ( check_in <= $2 AND check_out >= $1 OR check_in <= $1 and check_out >= $1)", 
+    [parseISO(req.body.check_in), parseISO(req.body.check_out), req.body.room_id])
     console.log(rows)
     if (parseInt(rows[0]?.count)) {
       console.log(rows)
@@ -39,7 +40,7 @@ router.post("/", authenticateToken, async (req, res) => {
 
     const newBooking = await pool.query(
       "INSERT INTO booking (check_in,check_out,user_id,room_id) VALUES ($1,$2,$3,$4)",
-      [req.body.check_in, req.body.check_out, req.user.user_id, req.body.room_id]
+      [parseISO(req.body.check_in), parseISO(req.body.check_out), req.user.user_id, req.body.room_id]
     );
     res.json({ booking: newBooking.rows[0] });
   } catch (error) {

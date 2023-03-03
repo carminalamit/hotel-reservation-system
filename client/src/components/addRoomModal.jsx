@@ -9,6 +9,8 @@ const initialData = {
   max_count: "",
   status: "",
   img_url: "",
+  image: "",
+  image_type: "IMAGE",
   max_count: "",
   checkin_time: "",
   checkout_time: "",
@@ -18,6 +20,7 @@ export function AddRoomModal({ show, onHide }) {
   // Edit data booking
   const [roomDetail, roomDetailChange] = useState(initialData);
   console.log(roomDetail)
+  
 
   const handleSubmit = async () => {
     const res = await app.post("/api/room", roomDetail);
@@ -25,6 +28,18 @@ export function AddRoomModal({ show, onHide }) {
     window.location.reload();
     onHide();
   };
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+    // send the formData object to the server
+    roomDetailChange({
+      ...roomDetail,
+      image: formData,
+    })
+  }
+  console.log(roomDetail)
 
 //   useEffect(() => {
 //     roomDetailChange(selectedRoomData);
@@ -151,6 +166,14 @@ export function AddRoomModal({ show, onHide }) {
               }
               required
             />
+            {/* <Form.Control
+              className="border-dark"
+              name="image"
+              type="file"
+              // value={roomDetail.image}
+              onChange={handleImageUpload}
+              required
+            /> */}
           </Form.Group>
           <Form.Group
             className="mb-3"
