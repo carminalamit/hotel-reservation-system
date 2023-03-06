@@ -1,6 +1,7 @@
 import { Modal, Form, Button } from "react-bootstrap";
 import { useState } from 'react';
-import { app } from '../../lib/axios-config'
+import { app } from '../../lib/axios-config';
+
 
 const initialData = {
 	role: "GUEST",
@@ -14,12 +15,43 @@ const initialData = {
 export function RegisterModal({ show, onHide }) {
 	const [formData, setFormData] = useState(initialData);
 	const handleOnChange = (e) => {
+		// const { name, value } = e.target
+		// let regex
+		
+		// if (name === "phoneNumber") {
+		// 	const regex = /(09|\+639)\d{9}$/; // the regex pattern for phone numbers starting with 09 and with a total of 11 digits
+		// 	console.log(regex.test(value))
+		// 	if (!regex.test(value)) {
+		// 		console.log(value)
+		// 	  // display an error message for invalid phone numbers
+		// 	  e.target.setCustomValidity("Please enter a valid phone number");
+		// 	} else {
+		// 	  e.target.setCustomValidity(""); // clear the error message
+		// 	}
+
+		//   }
+
 		setFormData({ ...formData, [e.target.name]: e.target.value });
+
+		
+		if (formData.phoneNumber.length <= 11) {
+			setFormData(formData.phoneNumber)
+		} 
+		
+		
 	}
 	const handleSubmit = async () => {
 		if (formData.password !== formData.confirmPassword) return;
-		const res = await app.post('/api/users', formData)
-		onHide();
+
+		try {
+			const res = await app.post('/api/users', formData)
+			onHide();
+		} catch (error) {
+			// Show an error message to the user
+			console.log(error);
+			alert("An error occurred. Please try again later.");
+		}
+		
 	}
 	console.log(formData)
 
@@ -48,11 +80,14 @@ export function RegisterModal({ show, onHide }) {
 						<Form.Label>Phone Number</Form.Label>
 						<Form.Control
 							className="was-validated border-dark"
+							maxLength={11}
 							name="phoneNumber"
-							type="integer"
+							type="number"
+							// type="tel"
 							placeholder="09*********"
 							value={formData.phoneNumber}
 							onChange={handleOnChange}
+							// autoComplete="number"
 							autoComplete="number"
 							required
 						/>

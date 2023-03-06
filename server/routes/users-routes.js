@@ -9,7 +9,7 @@ import { authenticateToken } from "../middleware/authorization.js";
 const router = express.Router();
 
 // READ users listing
-router.get("/", authenticateToken, async (req, res) => { // authenticateToken
+router.get("/", authenticateToken, async (req, res) => { 
   try {
     // console.log(req.cookies);
     const users = await pool.query("SELECT * FROM users");
@@ -32,7 +32,7 @@ router.get("/:user_id", authenticateToken, async (req, res) => {
 });
 
 // CREATE 
-router.post("/", authenticateToken, async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     console.log(req.body)
     const hashedPassword = await bcrypt.hash(req.body.password, 10);

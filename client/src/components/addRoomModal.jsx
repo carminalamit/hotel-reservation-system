@@ -18,28 +18,41 @@ const initialData = {
 
 export function AddRoomModal({ show, onHide }) {
   // Edit data booking
-  const [roomDetail, roomDetailChange] = useState(initialData);
-  console.log(roomDetail)
+  const [roomDetails, setRoomDetails] = useState(initialData);
+  console.log(roomDetails)
   
 
   const handleSubmit = async () => {
-    const res = await app.post("/api/room", roomDetail);
+    const formData = new FormData();
+    formData.append("type", roomDetails.type);
+    formData.append("rate", roomDetails.rate);
+    formData.append("details", roomDetails.details);
+    formData.append("max_count", roomDetails.max_count);
+    formData.append("status", roomDetails.status);
+    formData.append("img_url", roomDetails.img_url);
+    formData.append("image", roomDetails.image);
+    formData.append("checkin_time", roomDetails.checkin_time);
+    formData.append("checkout_time", roomDetails.checkout_time);
+
+
+    const res = await app.post("/api/room", formData);
     alert("Added successfully!");
     window.location.reload();
     onHide();
   };
 
   const handleImageUpload = (event) => {
+    
+
     const file = event.target.files[0];
-    const formData = new FormData();
-    formData.append("image", file);
+    
     // send the formData object to the server
-    roomDetailChange({
-      ...roomDetail,
-      image: formData,
+    setRoomDetails({
+      ...roomDetails,
+      image: file,
     })
   }
-  console.log(roomDetail)
+  console.log(roomDetails)
 
 //   useEffect(() => {
 //     roomDetailChange(selectedRoomData);
@@ -81,10 +94,10 @@ export function AddRoomModal({ show, onHide }) {
               className="border-dark"
               name="type"
               type="text"
-              value={roomDetail.type}
+              value={roomDetails.type}
               onChange={(e) =>
-                roomDetailChange({
-                  ...roomDetail,
+                setRoomDetails({
+                  ...roomDetails,
                   type: e.target.value,
                 })
               }
@@ -100,10 +113,10 @@ export function AddRoomModal({ show, onHide }) {
               className="border-dark"
               name="rate"
               type="text"
-              value={roomDetail.rate}
+              value={roomDetails.rate}
               onChange={(e) =>
-                roomDetailChange({
-                  ...roomDetail,
+                setRoomDetails({
+                  ...roomDetails,
                   rate: e.target.value,
                 })
               }
@@ -119,10 +132,10 @@ export function AddRoomModal({ show, onHide }) {
               className="border-dark"
               name="details"
               type="text"
-              value={roomDetail.details}
+              value={roomDetails.details}
               onChange={(e) =>
-                roomDetailChange({
-                  ...roomDetail,
+                setRoomDetails({
+                  ...roomDetails,
                   details: e.target.value,
                 })
               }
@@ -138,10 +151,10 @@ export function AddRoomModal({ show, onHide }) {
               className="border-dark"
               name="max_count"
               type="text"
-              value={roomDetail.max_count}
+              value={roomDetails.max_count}
               onChange={(e) =>
-                roomDetailChange({
-                  ...roomDetail,
+                setRoomDetails({
+                  ...roomDetails,
                   max_count: e.target.value,
                 })
               }
@@ -153,7 +166,7 @@ export function AddRoomModal({ show, onHide }) {
             controlId="exampleForm.ControlInput4"
           >
             <Form.Label>Image</Form.Label>
-            <Form.Control
+            {/* <Form.Control
               className="border-dark"
               name="img_url"
               type="text"
@@ -165,15 +178,15 @@ export function AddRoomModal({ show, onHide }) {
                 })
               }
               required
-            />
-            {/* <Form.Control
+            /> */}
+            <Form.Control
               className="border-dark"
               name="image"
               type="file"
               // value={roomDetail.image}
               onChange={handleImageUpload}
               required
-            /> */}
+            />
           </Form.Group>
           <Form.Group
             className="mb-3"
@@ -184,10 +197,10 @@ export function AddRoomModal({ show, onHide }) {
               className="border-dark"
               name="checkin_time"
               type="text"
-              value={roomDetail.checkin_time}
+              value={roomDetails.checkin_time}
               onChange={(e) =>
-                roomDetailChange({
-                  ...roomDetail,
+                setRoomDetails({
+                  ...roomDetails,
                   checkin_time: e.target.value,
                 })
               }
@@ -203,10 +216,10 @@ export function AddRoomModal({ show, onHide }) {
               className="border-dark"
               name="checkout_time"
               type="text"
-              value={roomDetail.checkout_time}
+              value={roomDetails.checkout_time}
               onChange={(e) =>
-                roomDetailChange({
-                  ...roomDetail,
+                setRoomDetails({
+                  ...roomDetails,
                   checkout_time: e.target.value,
                 })
               }

@@ -59,6 +59,7 @@ export function LoginModal({ show, onHide }) {
 							name="password"
 							value={formData.password}
 							onChange={handleOnChange}
+							autoComplete="current password"
 							required
 						/>
 						<div className="invalid-feedback">Please enter your password</div>

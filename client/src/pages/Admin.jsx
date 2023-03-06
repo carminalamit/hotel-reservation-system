@@ -328,7 +328,7 @@ function Admin() {
                 <thead>
                   <tr>
                     <th>User Id</th>
-                    <th>Role</th>
+                    {/* <th>Role</th> */}
                     <th>Name</th>
                     <th>Phone</th>
                     <th>Email</th>
@@ -341,7 +341,7 @@ function Admin() {
                     usersData.map((item) => (
                       <tr key={item.user_id}>
                         <td>{item.user_id}</td>
-                        <td>{item.role}</td>
+                        {/* <td>{item.role}</td> */}
                         <td>{item.name}</td>
                         <td>{item.phone}</td>
                         <td>{item.email}</td>
