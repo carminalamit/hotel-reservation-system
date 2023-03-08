@@ -33,7 +33,7 @@ function BookModals({show, handleClose}) {
   return (
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title className='text-p'>Welcome to The Richmonde Hotel & Suites</Modal.Title>
+          <Modal.Title style={{width: "600px"}} className='text-p'>Welcome to The Richmonde Hotel & Suites</Modal.Title>
         </Modal.Header>
         <Modal.Body className='text-p'>Thank you for booking with us. Your room was booked successfull!</Modal.Body>
         <Modal.Footer><FaCheckCircle /></Modal.Footer>

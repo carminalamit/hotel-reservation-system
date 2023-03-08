@@ -13,18 +13,18 @@ function AdminLogin() {
   const [formData, setFormData] = useState(initialData);
   const [errors, setErrors] = useState({})
   const navigate = useNavigate();
-  const handleOnChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleOnChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     const { data } = await app.post("/api/auth/login", formData);
     const { accessToken } = data;
 
     localStorage.setItem("authenticateToken", accessToken);
     app.defaults.headers.common["Authorization"] = "Bearer " + accessToken;
 
-    // onHide();
     navigate("/admin/panel");
   };
 

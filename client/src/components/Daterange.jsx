@@ -21,18 +21,17 @@ function Daterange() {
   const [excludedDate, setExcludedDate] = useState([]);
 
   const onChangeCheckIn = (date) => {
-    setCheckIn(date)
+    setCheckIn(date);
   };
 
   const onChangeCheckOut = (date) => {
-    setCheckOut(date)
+    setCheckOut(date);
   };
- 
 
   const { id } = useParams();
   const [checkIn, setCheckIn] = useState(null);
   const [checkOut, setCheckOut] = useState(null);
-  console.log(checkIn, checkOut)
+  console.log(checkIn, checkOut);
   const [roomId, setRoomId] = useState(null);
 
   const [openModal, setOpenModal] = useState(false);
@@ -75,59 +74,41 @@ function Daterange() {
 
   return (
     <div className="date">
-      <div style={{ width: "250px" }}>
+      <div>
         <BookModals show={openModal} handleClose={handleClose} />
-        <div className="details-fs" style={{ margin: 20 }}>
-          <h6>Available dates</h6>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-              <Form.Label>Check in</Form.Label>
-              {/* <Form.Control
-                style={{ width: "200px" }}
-                value={checkIn}
-                className="border-dark"
-                name="checkin"
-                type="date"
-                // value={formData.phoneNumber}
-                onChange={(event) => setCheckIn(event.target.value)}
-                autoComplete="name"
-                required
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput3"> */}
-              {/* <Form.Label>Check out</Form.Label> */}
-              {/* <Form.Control
-                style={{ width: "200px" }}
-                value={checkOut}
-                className="border-dark"
-                name="checkout"
-                type="date"
-                // value={formData.phoneNumber}
-                onChange={(event) => setCheckOut(event.target.value)}
-                autoComplete="number"
-                required
-              /> */}
-              <div>
-                <DatePicker
-                  // selected={startDate}
-                  selected={checkIn}
-                  onChange={onChangeCheckIn}
-                  excludeDateIntervals={excludedDate}
-                  // selectsRange
-                />
-                <Form.Label>Check out</Form.Label>
-                <DatePicker
-                  style
-                  // selected={endDate}
-                  selected={checkOut}
-                  onChange={onChangeCheckOut}
-                  excludeDateIntervals={excludedDate}
-                  // selectsRange
-                />
+        <div className="details-fs text-center mt-2">
+          <h6
+            style={{ borderBottom: "1px solid black", paddingBottom: "10px" }}
+          >
+            Available dates
+          </h6>
+          <Form className=""  style={{ marginTop: "25px" }}>
+            <Form.Group className="" controlId="exampleForm.ControlInput2">
+              <div className="">
+                <div>
+                  <DatePicker
+                    className="date-input"
+                    placeholderText="Check in"
+                    selected={checkIn}
+                    onChange={onChangeCheckIn}
+                    excludeDateIntervals={excludedDate}
+                    // selectsRange
+                  />
+                  {/* <Form.Label>Check out</Form.Label> */}
+                  <DatePicker
+                    className="date-input"
+                    placeholderText="Check out"
+                    selected={checkOut}
+                    onChange={onChangeCheckOut}
+                    excludeDateIntervals={excludedDate}
+                    // selectsRange
+                  />
+                </div>
               </div>
             </Form.Group>
           </Form>
           <Button
+            style={{ width: "83%" }}
             className="bg-black text-white"
             variant="custom"
             onClick={handleSubmit}

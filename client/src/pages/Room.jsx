@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { app } from "../../lib/axios-config";
 import Daterange from "../components/Daterange";
 import Logout from "../components/Logout";
+import { convertImageData } from "../util";
 
 
 function Room() {
@@ -32,7 +33,7 @@ function Room() {
         <>
           <div className="cont">
             <div>
-              <img className="room-img" src={room.img_url} />
+              <img className="room-img" src={convertImageData(room.image_data)} />
             </div>
             <div style={{display: "flex", marginLeft: "20px"}}>
               <div className="room-text">

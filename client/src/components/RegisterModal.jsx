@@ -1,10 +1,10 @@
-import { Modal, Form, Button } from "react-bootstrap";
+import { Modal, Form, Button, Col, InputGroup, Row } from "react-bootstrap";
 import { useState } from 'react';
 import { app } from '../../lib/axios-config';
 
 
 const initialData = {
-	role: "GUEST",
+	// role: "GUEST",
 	name: "",
 	phoneNumber: "",
 	email: "",
@@ -14,6 +14,7 @@ const initialData = {
 
 export function RegisterModal({ show, onHide }) {
 	const [formData, setFormData] = useState(initialData);
+	const [validated, setValidated] = useState(false);
 	const handleOnChange = (e) => {
 		// const { name, value } = e.target
 		// let regex
@@ -34,13 +35,13 @@ export function RegisterModal({ show, onHide }) {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 
 		
-		if (formData.phoneNumber.length <= 11) {
-			setFormData(formData.phoneNumber)
-		} 
+		// if (formData.phoneNumber.length <= 11) {
+		// 	setFormData(formData.phoneNumber)
+		// } 
 		
 		
 	}
-	const handleSubmit = async () => {
+	const handleSubmit = async (event) => {
 		if (formData.password !== formData.confirmPassword) return;
 
 		try {

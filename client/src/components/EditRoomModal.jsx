@@ -9,7 +9,7 @@ const initialData = {
   details: "",
   max_count: "",
   status: "",
-  img_url: "",
+  image: "",
   max_count: "",
   checkin_time: "",
   checkout_time: "",
@@ -20,11 +20,34 @@ export function EditRoomModal({ show, onHide, selectedRoomData }) {
   const [roomDetail, roomDetailChange] = useState({});
 
   const handleSubmit = async () => {
-    const res = await app.put(`/api/room/${roomDetail.room_id}`, roomDetail);
+    const formData = new FormData();
+    formData.append("type", roomDetail.type);
+    formData.append("rate", roomDetail.rate);
+    formData.append("details", roomDetail.details);
+    formData.append("max_count", roomDetail.max_count);
+    formData.append("status", roomDetail.status);
+    formData.append("image", roomDetail.image);
+    formData.append("checkin_time", roomDetail.checkin_time);
+    formData.append("checkout_time", roomDetail.checkout_time);
+
+    console.log(formData, roomDetail)
+    const res = await app.put(`/api/room/${roomDetail.room_id}`, formData);
     alert("Updated successfully!");
     window.location.reload();
     onHide();
   };
+
+
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    
+    // send the formData object to the server
+    roomDetailChange({
+      ...roomDetail,
+      image: file,
+    })
+  }
 
   useEffect(() => {
     roomDetailChange(selectedRoomData);
@@ -138,8 +161,8 @@ export function EditRoomModal({ show, onHide, selectedRoomData }) {
             className="mb-3 was-validated"
             controlId="exampleForm.ControlInput4"
           >
-            <Form.Label>Img url</Form.Label>
-            <Form.Control
+            <Form.Label>Image</Form.Label>
+            {/* <Form.Control
               className="border-dark"
               name="img_url"
               type="text"
@@ -150,6 +173,14 @@ export function EditRoomModal({ show, onHide, selectedRoomData }) {
                   img_url: e.target.value,
                 })
               }
+              required
+            /> */}
+            <Form.Control
+              className="border-dark"
+              name="image"
+              type="file"
+              // value={roomDetails.images}
+              onChange={handleImageUpload}
               required
             />
           </Form.Group>

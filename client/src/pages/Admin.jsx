@@ -6,6 +6,8 @@ import { EditBookingModal } from "../components/EditBookingModal";
 import { EditRoomModal } from "../components/EditRoomModal";
 import { AddRoomModal } from "../components/AddRoomModal";
 import moment from "moment";
+import ViewImageModal from "../components/ViewImageModal";
+import { convertImageData } from "../util";
 
 function Admin() {
   const [show, setShow] = useState(false);
@@ -16,6 +18,8 @@ function Admin() {
   const [selectedRoomData, setSelectedRoomData] = useState({});
   const [showEditRoom, setShowEditRoom] = useState(false);
   const [showAddRoom, setShowAddRoom] = useState(false);
+  const [showViewImage, setShowViewImage] = useState(false)
+  const [selectedImage, setSelectedImage] = useState(null);
   console.log(selectedRoomData);
 
   // booking data declaration
@@ -79,6 +83,9 @@ function Admin() {
       const { data } = await app.get(
         `http://localhost:3000/api/room/${room_id}`
       );
+      
+      // const base64 = Buffer.from(data.image_data, 'binary').toString('base64');
+
       setSelectedRoomData(data.room);
       console.log(data.room);
     } catch (err) {
@@ -112,6 +119,14 @@ function Admin() {
       }
     }
   };
+
+  // view image
+  const handleImage = (data) => {
+    const image = convertImageData(data.image_data)
+    setSelectedImage(image)
+    setShowViewImage(true)
+    console.log(data)
+  }
 
   // Get data booking
   const fetchDataBooking = async () => {
@@ -175,8 +190,10 @@ function Admin() {
     fetchDataRoom();
     fetchDataBooking();
     fetchDataUsers();
+    
   }, []);
 
+  console.log(showViewImage)
   return (
     <div>
       <Logout />
@@ -272,7 +289,7 @@ function Admin() {
                       <th>Rate</th>
                       <th>Details</th>
                       <th>Max count</th>
-                      <th>Image</th>
+                      {/* <th>Image</th> */}
                       <th>Checkin time</th>
                       <th>Checkout time</th>
                       <th>Action</th>
@@ -290,10 +307,10 @@ function Admin() {
                             {item.max_count}
                           </td>
 
-                          <td>{item.img_url}</td>
+                          {/* <td>{item.img_url}</td> */}
                           <td>{item.checkin_time}</td>
                           <td>{item.checkout_time}</td>
-                          <td style={{ minWidth: "212px" }}>
+                          <td style={{ minWidth: "282px" }}>
                             <Button
                               className="bg-black text-white mx-2"
                               variant="custom"
@@ -311,6 +328,15 @@ function Admin() {
                               }}
                             >
                               Delete
+                            </Button>
+                            <Button
+                              className="bg-black text-white mx-2"
+                              variant="custom"
+                              onClick={() => {
+                                handleImage(item)
+                              }}
+                            >
+                              View image
                             </Button>
                           </td>
                         </tr>
@@ -388,6 +414,7 @@ function Admin() {
         onHide={() => setShowEditRoom(false)}
       />
       <AddRoomModal show={showAddRoom} onHide={() => setShowAddRoom(false)} />
+      <ViewImageModal show={showViewImage} handleClose={() => setShowViewImage(false)} imageData={selectedImage} />
     </div>
   );
 }
