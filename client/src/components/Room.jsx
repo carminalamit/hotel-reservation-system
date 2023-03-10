@@ -24,7 +24,7 @@ function Room() {
 
   return (
     <Container fluid>
-      <div className="text-center m-3 home-text">
+      <div className="text-center mt-3 mb-2 home-text">
         <h1>Find your next stay</h1>
         <h5>Search low prices on rooms</h5>
       </div>
@@ -33,7 +33,7 @@ function Room() {
           <Row style={{ padding: "25px" }}>
             <Card
               className="container mt-3 mb-3 p-2"
-              style={{ width: "25rem", height: "400px" }} //20 rem
+              style={{ width: "25rem", height: "380px" }} //20 rem
               onClick={() => {
                 navigate(`/room/${data.room_id}`);
                 console.log("click");
@@ -46,9 +46,9 @@ function Room() {
                 />
                 <div className="card-img-overlay"></div>
               </div>
-              <Card.Body className="details-fs">
-                <Card.Title>{data.type}</Card.Title>
-                <Card.Text>{data.rate}</Card.Text>
+              <Card.Body className="d-flex justify-content-between">
+                <Card.Title className="room-title">{data.type}</Card.Title>
+                <Card.Text  className="room-price">{data.rate}</Card.Text>
               </Card.Body>
             </Card>
           </Row>

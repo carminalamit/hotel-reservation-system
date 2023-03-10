@@ -49,6 +49,7 @@ function Daterange() {
 
   const handleClose = () => {
     setOpenModal(false);
+    window.location.reload()
   };
 
   const getBookingByRoomId = async () => {
@@ -78,7 +79,7 @@ function Daterange() {
         <BookModals show={openModal} handleClose={handleClose} />
         <div className="details-fs text-center mt-2">
           <h6
-            style={{ borderBottom: "1px solid black", paddingBottom: "10px" }}
+            style={{ fontSize: "17px", fontWeight: "bold", paddingTop: "15px" }}
           >
             Available dates
           </h6>
@@ -108,10 +109,10 @@ function Daterange() {
             </Form.Group>
           </Form>
           <Button
-            style={{ width: "83%" }}
+            style={{ width: "80%" }}
             className="bg-black text-white"
             variant="custom"
-            onClick={handleSubmit}
+            onClick={() => {handleSubmit()}}
           >
             Book now
           </Button>

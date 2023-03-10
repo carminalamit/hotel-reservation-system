@@ -35,9 +35,9 @@ function Room() {
             <div>
               <img className="room-img" src={convertImageData(room.image_data)} />
             </div>
-            <div style={{display: "flex", marginLeft: "20px"}}>
+            <div style={{display: "flex", marginLeft: "26px"}}>
               <div className="room-text">
-                <h4>{room.type}</h4>
+                <h4 className="room-title2">{room.type}</h4>
                 <p>{room.rate}</p>
                 <p>Max number of guests: {room.max_count}</p>
                 <p>Check in: {room.checkin_time}</p>
