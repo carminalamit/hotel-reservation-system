@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 
 function Logout() {
-    let user = JSON.parse(localStorage.getItem('user-info'))
+    const user = JSON.parse(localStorage.getItem('user-info'))
     const navigate = useNavigate()
     function LogOut()
     {
@@ -20,6 +20,7 @@ function Logout() {
             </Nav.Item>
             <Nav.Item as="li" className="nav-right">
                 <Nav.Link onClick={LogOut} className="text-light">Logout</Nav.Link>
+                {/* <Nav.Item className="text-light">{user && `Welcome, ${user.email}`}</Nav.Item> */}
             </Nav.Item>
         </Nav>
     </div>
