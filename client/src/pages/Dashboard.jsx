@@ -5,9 +5,24 @@ import React from 'react'
 // import { DatePicker, Space } from 'antd';
 import Logout from '../components/Logout'
 import Room from '../components/Room';
+import { useEffect } from 'react';
+import { app } from '../../lib/axios-config';
 
 
 const Dashboard = () => {
+
+  useEffect(() => {
+    const verify = async () => {
+      try {
+        const res = await app.post('/api/auth/verify');
+        console.log(res)
+      } catch (error) {
+        window.location.href="/"
+      }
+    }
+    verify()
+  }, [])
+
   return (
     <div>
       <Logout />
@@ -16,4 +31,6 @@ const Dashboard = () => {
     </div>
   );
 };
+
+
 export default Dashboard;

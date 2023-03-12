@@ -1,21 +1,35 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { redirect, useParams } from "react-router-dom";
 import { app } from "../../lib/axios-config";
 import Daterange from "../components/Daterange";
 import Logout from "../components/Logout";
 import { convertImageData } from "../util";
+import { useNavigate } from "react-router-dom";
 
 
 function Room() {
   const { id } = useParams();
   const [room, setRoom] = useState(null);
+  const navigate = useNavigate()
+  
+  useEffect(() => {
+    const verify = async () => {
+      try {
+        const res = await app.post('/api/auth/verify');
+        console.log(res)
+      } catch (error) {
+        window.location.href="/"
+      }
+    }
+    verify()
+  }, [])
 
   useEffect(() => {
     const getRoomData = async () => {
       try {
-        const res = await app.get(`/api/room/${id}`);
+        const res = await app.get(`/api/rooms/${id}`);
         console.log(res);
-        setRoom(res.data?.room);
+        setRoom(res.data?.rooms);
       } catch (error) {
         console.error(error);
       }
@@ -37,9 +51,9 @@ function Room() {
             </div>
             <div style={{display: "flex", marginLeft: "26px"}}>
               <div className="room-text">
-                <h4 className="room-title2">{room.type}</h4>
+                <h4 className="room-title2">{room.room_type}</h4>
                 <p>{room.rate}</p>
-                <p>Max number of guests: {room.max_count}</p>
+                <p>Max number of guests: {room.max_guests}</p>
                 <p>Check in: {room.checkin_time}</p>
                 <p>Check out: {room.checkout_time}</p>
                 <p>{room.details}</p>

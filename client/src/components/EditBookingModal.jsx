@@ -20,7 +20,7 @@ export function EditBookingModal({ show, onHide, selectedBookingData }) {
   // };
 
   const handleSubmit = async () => {
-    const res = await app.put(`/api/booking/${bookingDetail.booking_id}`, bookingDetail);
+    const res = await app.put(`/api/bookings/${bookingDetail.id}`, bookingDetail);
     alert("Updated successfully!");
     window.location.reload();
     onHide();
@@ -31,7 +31,7 @@ export function EditBookingModal({ show, onHide, selectedBookingData }) {
     console.log(selectedBookingData)
   }, [selectedBookingData])
 
-
+  console.log(bookingDetail)
   return (
     <Modal className="modal-font" show={show} onHide={onHide}>
       <Modal.Header closeButton>
@@ -46,14 +46,14 @@ export function EditBookingModal({ show, onHide, selectedBookingData }) {
             <Form.Label>Booking Id</Form.Label>
             <Form.Control
               className="border-dark"
-              name="booking_id"
+              name="id"
               type="integer"
               // placeholder="input name"
-              value={bookingDetail.booking_id}
+              value={bookingDetail.id}
               onChange={(e) =>
                 bookingDetailChange({
                   ...bookingDetail,
-                  booking_id: e.target.value,
+                  id: e.target.value,
                 })
               }
               // autoComplete="name"

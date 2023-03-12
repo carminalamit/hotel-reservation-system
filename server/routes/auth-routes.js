@@ -1,10 +1,19 @@
 import express from 'express';
-import jwt from 'jsonwebtoken';
+import jwt, { verify } from 'jsonwebtoken';
 import pool from '../db.js';
 import bcrypt from 'bcrypt';
 import { jwtTokens } from '../utils/jwt-helpers.js';
+import { authenticateToken } from '../middleware/authorization.js';
 
 const router = express.Router();
+
+router.post('/verify', authenticateToken, async (req, res) => {
+  try {
+    res.json(req.user);
+  } catch (error) {
+    res.status(401).json({error: error.message});
+  }
+})
 
 router.post('/login', async (req, res) => {
   try {

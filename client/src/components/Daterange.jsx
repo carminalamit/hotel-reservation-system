@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import { app } from "../../lib/axios-config";
 import { useParams } from "react-router-dom";
-import BookModal from "../components/BookModals";
-import BookModals from "../components/BookModals";
+import BookModal from "./BookModal";
 import DatePicker from "react-datepicker";
-import { subDays, addDays, format } from "date-fns";
+import { subDays, addDays } from "date-fns";
+import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 
 function Daterange() {
@@ -42,7 +42,7 @@ function Daterange() {
     const dates = { check_in: checkIn, check_out: checkOut, room_id: id };
     try {
       if (!checkIn || !checkOut) return;
-      const res = await app.post("/api/booking", dates);
+      const res = await app.post("/api/bookings", dates);
       setOpenModal(true);
     } catch (error) {}
   };
@@ -54,9 +54,9 @@ function Daterange() {
 
   const getBookingByRoomId = async () => {
     try {
-      const res = await app.get(`/api/booking/room-id/${id}`);
+      const res = await app.get(`/api/bookings/room-id/${id}`);
       console.log(res);
-      const bookings = res.data?.booking;
+      const bookings = res.data?.bookings;
       const data = bookings.map((booking) => {
         console.log(new Date(booking.check_in));
         return {
@@ -76,12 +76,12 @@ function Daterange() {
   return (
     <div className="date">
       <div>
-        <BookModals show={openModal} handleClose={handleClose} />
+        <BookModal show={openModal} handleClose={handleClose} />
         <div className="details-fs text-center mt-2">
           <h6
             style={{ fontSize: "17px", fontWeight: "bold", paddingTop: "15px" }}
           >
-            Available dates
+            Select available dates
           </h6>
           <Form className=""  style={{ marginTop: "25px" }}>
             <Form.Group className="" controlId="exampleForm.ControlInput2">
@@ -92,6 +92,7 @@ function Daterange() {
                     placeholderText="Check in"
                     selected={checkIn}
                     onChange={onChangeCheckIn}
+                    minDate={moment().toDate()}
                     excludeDateIntervals={excludedDate}
                     // selectsRange
                   />
@@ -101,6 +102,7 @@ function Daterange() {
                     placeholderText="Check out"
                     selected={checkOut}
                     onChange={onChangeCheckOut}
+                    minDate={moment().toDate()}
                     excludeDateIntervals={excludedDate}
                     // selectsRange
                   />

@@ -19,11 +19,11 @@ router.get("/", authenticateToken, async (req, res) => {
   }
 });
 
-router.get("/:user_id", authenticateToken, async (req, res) => {
+router.get("/:id", authenticateToken, async (req, res) => { // /:user_id
   try {
     // console.log(req.cookies);
-    const users = await pool.query("SELECT * FROM users WHERE user_id=$1", [
-      req.params.user_id,
+    const users = await pool.query("SELECT * FROM users WHERE id=$1", [ // user_id
+      req.params.id, // user_id
     ]);
     res.json({ users: users.rows });
   } catch (error) {
@@ -37,8 +37,8 @@ router.post("/", async (req, res) => {
     console.log(req.body)
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const newUser = await pool.query(
-      "INSERT INTO users (role,name,phone,email,password) VALUES ($1,$2,$3,$4,$5)",
-      [req.body.role, req.body.name, req.body.phoneNumber, req.body.email, hashedPassword]
+      "INSERT INTO users (name,phone,email,password,inserted_at,updated_at) VALUES ($1,$2,$3,$4,NOW(),NOW())",
+      [req.body.name, req.body.phoneNumber, req.body.email, hashedPassword]
     );
     res.json({ users: newUser.rows[0] });
   } catch (error) {
@@ -48,18 +48,19 @@ router.post("/", async (req, res) => {
 });
 
 // UPDATE
-router.put("/:user_id", authenticateToken, async (req, res) => {
+router.put("/:id", authenticateToken, async (req, res) => { // /:user_id
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
       const newUser = await pool.query(
-        "update users set role=$1, name=$2, phone=$3, email=$4, password=$5 where user_id=$6",
+        "update users set name=$1, phone=$2, email=$3, password=$4, inserted_at=$5, updated_at=$6 where id=$7",
         [
-          req.body.role,
           req.body.name,
           req.body.phone,
           req.body.email,
           hashedPassword,
-          req.params.user_id,
+          req.body.inserted_at,
+          req.body.updated_at,
+          req.params.id,
         ]
       );
       res.json({ users: newUser.rows[0] });
@@ -69,10 +70,10 @@ router.put("/:user_id", authenticateToken, async (req, res) => {
   });
 
 // DELETE
-router.delete("/:user_id", authenticateToken, async (req, res) => {
+router.delete("/:id", authenticateToken, async (req, res) => {
   try {
-    const users = await pool.query("DELETE FROM users WHERE user_id=$1", [
-        req.params.user_id,
+    const users = await pool.query("DELETE FROM users WHERE id=$1", [
+        req.params.id,
     ]);
     return res.status(200).json("Deleted!");
   } catch (error) {

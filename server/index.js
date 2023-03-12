@@ -26,8 +26,8 @@ app.use(cookieParser());
 app.use('/', express.static(join(__dirname, 'public')))
 app.use('/api/auth',authRouter);
 app.use('/api/users', usersRouter);
-app.use('/api/room', roomRouter);
-app.use('/api/booking', bookingRouter);
+app.use('/api/rooms', roomRouter);
+app.use('/api/bookings', bookingRouter);
 
 
 app.listen(PORT, ()=> {

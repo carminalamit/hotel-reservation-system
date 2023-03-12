@@ -1,11 +1,11 @@
-POST http://localhost:3000/api/booking
+POST http://localhost:3000/api/bookings
 Content-Type: application/json
-Authorization: Bearer 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6Ik1pbmEiLCJlbWFpbCI6ImxhbWl0Y2FybWluYUBnbWFpbC5jb20iLCJpYXQiOjE2Nzg1MjI3MTksImV4cCI6MTY3ODU0NDMxOX0.ldA-a4JiKBssjwiiaJdu6UXKf3GAxXvpaNWfeV_DiVQ
 
 {
-    "room_id" : "7",
-    "check_in" : "2023-03-09",
-    "check_out" : "2023-03-10"
+    "room_id" : "36",
+    "check_in" : "2023-03-11",
+    "check_out" : "2023-03-12"
 } 
 
 ### 

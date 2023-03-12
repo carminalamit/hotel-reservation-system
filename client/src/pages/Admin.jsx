@@ -13,7 +13,7 @@ function Admin() {
   const [show, setShow] = useState(false);
   const toggleShow = () => setShow(!show);
 
-  // room data declaration
+  // rooms data
   const [roomData, roomDataChange] = useState([]);
   const [selectedRoomData, setSelectedRoomData] = useState({});
   const [showEditRoom, setShowEditRoom] = useState(false);
@@ -22,72 +22,53 @@ function Admin() {
   const [selectedImage, setSelectedImage] = useState(null);
   console.log(selectedRoomData);
 
-  // booking data declaration
+  // bookings data
   const [bookingData, bookingDataChange] = useState([]);
   const [selectedBookingData, setSelectedBookingData] = useState({});
   const [showEditBooking, setShowEditBooking] = useState(false);
   console.log(selectedBookingData);
 
-  // users data declaration
+  // users data
   const [usersData, usersDataChange] = useState([]);
   const [selectedUsersData, setSelectedUsersData] = useState({});
 
   // update booking data
-  const editButton = (booking_id) => {
-    fetchBooking(booking_id);
+  const editButton = (id) => {
+    fetchBooking(id);
     setShowEditBooking(true);
-    console.log(booking_id);
+    console.log(id);
   };
 
-  const fetchBooking = async (booking_id) => {
+  const fetchBooking = async (id) => {
     try {
       const { data } = await app.get(
-        `http://localhost:3000/api/booking/${booking_id}`
+        `http://localhost:3000/api/bookings/${id}`
       );
-      setSelectedBookingData(data.booking);
-      console.log(data.booking);
+      setSelectedBookingData(data.bookings);
+      console.log(data.bookings);
     } catch (err) {
       console.log(err.message);
     }
   };
 
-  // Add room data
-  // const addRoomButton = (room_id) => {
-  //   addRoom()
-  //   setShowEditRoom(true)
-  //   console.log(room_id)
-  // }
-
-  // const addRoom = async (room_id) => {
-  //   try {
-  //     const { data } = await app.post(
-  //       `http://localhost:3000/api/room`
-  //     );
-  //     setSelectedRoomData(data.room)
-  //     console.log(data.room)
-  //   } catch (err) {
-  //     console.log(err.message);
-  //   }
-
-  // };
 
   // Update room data
-  const editRoomButton = (room_id) => {
-    fetchRoom(room_id);
+  const editRoomButton = (id) => {
+    fetchRoom(id);
     setShowEditRoom(true);
-    console.log(room_id);
+    console.log(id);
   };
 
-  const fetchRoom = async (room_id) => {
+  const fetchRoom = async (id) => {
     try {
       const { data } = await app.get(
-        `http://localhost:3000/api/room/${room_id}`
+        `http://localhost:3000/api/rooms/${id}`
       );
       
       // const base64 = Buffer.from(data.image_data, 'binary').toString('base64');
 
-      setSelectedRoomData(data.room);
-      console.log(data.room);
+      setSelectedRoomData(data.rooms);
+      console.log(data.rooms);
     } catch (err) {
       console.log(err.message);
     }
@@ -96,25 +77,30 @@ function Admin() {
   // Get data room
   const fetchDataRoom = async () => {
     try {
-      const { data } = await app.get("http://localhost:3000/api/room");
-      roomDataChange(data.room.sort((old, item) => old.room_id - item.room_id));
-      console.log(data.room);
+      const { data } = await app.get("http://localhost:3000/api/rooms");
+      console.log(data)
+      roomDataChange(data.rooms.sort((old, item) => old.id - item.id));
+      console.log(data.rooms);
+      console.log("---------------------------------------")
     } catch (err) {
       console.log(err.message);
     }
   };
 
   // Delete data room
-  const deleteRoom = async (room_id) => {
+  const deleteRoom = async (id) => {
     if (window.confirm("Do you want to remove?")) {
       try {
         const res = await app.delete(
-          `http://localhost:3000/api/room/${room_id}`
+          `http://localhost:3000/api/rooms/${id}`
         );
 
         alert("Removed successfully!");
         window.location.reload();
       } catch (err) {
+        if (err.message==="Request failed with status code 500") {
+          alert("Room has booked dates. Unable to delete!")
+        }
         console.log(err.message);
       }
     }
@@ -131,22 +117,22 @@ function Admin() {
   // Get data booking
   const fetchDataBooking = async () => {
     try {
-      const { data } = await app.get("http://localhost:3000/api/booking");
+      const { data } = await app.get("http://localhost:3000/api/bookings");
       bookingDataChange(
-        data.booking.sort((old, item) => old.booking_id - item.booking_id)
+        data.bookings.sort((old, item) => old.id - item.id)
       );
-      console.log(data.booking);
+      console.log(data.bookings);
     } catch (err) {
       console.log(err.message);
     }
   };
 
   // Delete data booking
-  const deleteBooking = async (booking_id) => {
+  const deleteBooking = async (id) => {
     if (window.confirm("Do you want to remove?")) {
       try {
         const res = await app.delete(
-          `http://localhost:3000/api/booking/${booking_id}`
+          `http://localhost:3000/api/bookings/${id}`
         );
 
         alert("Removed successfully!");
@@ -162,7 +148,7 @@ function Admin() {
     try {
       const { data } = await app.get("http://localhost:3000/api/users");
       usersDataChange(
-        data.users.sort((old, item) => old.user_id - item.user_id)
+        data.users.sort((old, item) => old.id - item.id)
       );
       console.log(data.users);
     } catch (err) {
@@ -171,11 +157,11 @@ function Admin() {
   };
 
   // Delete data users
-  const deleteUsers = async (user_id) => {
+  const deleteUsers = async (id) => {
     if (window.confirm("Do you want to remove?")) {
       try {
         const res = await app.delete(
-          `http://localhost:3000/api/users/${user_id}`
+          `http://localhost:3000/api/users/${id}`
         );
 
         alert("Removed successfully!");
@@ -187,6 +173,18 @@ function Admin() {
   };
 
   useEffect(() => {
+    const verify = async () => {
+      try {
+        const res = await app.post('/api/auth/verify');
+        console.log(res)
+      } catch (error) {
+        window.location.href="/"
+      }
+    }
+    verify()
+  }, [])
+
+  useEffect(() => {
     fetchDataRoom();
     fetchDataBooking();
     fetchDataUsers();
@@ -194,6 +192,7 @@ function Admin() {
   }, []);
 
   console.log(showViewImage)
+  console.log(roomData)
   return (
     <div>
       <Logout />
@@ -211,8 +210,8 @@ function Admin() {
             variant="dark"
           >
             <Tab
-              eventKey="booking"
-              title="Booking"
+              eventKey="bookings"
+              title="Bookings"
               tabClassName="text-light bg-dark"
             >
               <Table striped bordered hover variant="dark">
@@ -223,31 +222,28 @@ function Admin() {
                     <th>Room Id</th>
                     <th>Check In</th>
                     <th>Check Out</th>
+                    <th>Booking Date/Time</th>
+                    <th>Updated Booking Date/Time</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {bookingData &&
                     bookingData.map((item) => (
-                      <tr key={item.booking_id}>
-                        <td>{item.booking_id}</td>
+                      <tr key={item.id}>
+                        <td>{item.id}</td>
                         <td>{item.user_id}</td>
                         <td>{item.room_id}</td>
                         <td>{moment(item.check_in).format("LL")}</td>
                         <td>{moment(item.check_out).format("LL")}</td>
+                        <td>{moment(item.inserted_at).format("LLL")}</td>
+                        <td>{moment(item.updated_at).format("LLL")}</td>
                         <td>
-                          {/* <Button
-                            className="bg-black text-white"
-                            variant="custom"
-                            onClick={setShowAddBooking}
-                          >
-                            Add
-                          </Button> */}
                           <Button
                             className="bg-black text-white mx-2"
                             variant="custom"
                             onClick={() => {
-                              editButton(item.booking_id);
+                              editButton(item.id);
                             }}
                           >
                             Edit
@@ -256,7 +252,7 @@ function Admin() {
                             className="bg-black text-white"
                             variant="custom"
                             onClick={() => {
-                              deleteBooking(item.booking_id);
+                              deleteBooking(item.id);
                             }}
                           >
                             Delete
@@ -285,26 +281,26 @@ function Admin() {
                   <thead>
                     <tr>
                       <th>Room Id</th>
-                      <th>Type</th>
+                      <th>Room No.</th>
+                      <th>Room Type</th>
                       <th>Rate</th>
                       <th>Details</th>
-                      <th>Max count</th>
-                      {/* <th>Image</th> */}
-                      <th>Checkin time</th>
-                      <th>Checkout time</th>
+                      <th>Maximum Guests</th>
+                      <th>Checkin Time</th>
+                      <th>Checkout Time</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {roomData &&
                       roomData.map((item) => (
-                        <tr key={item.room_id}>
-                          <td>{item.room_id}</td>
-                          <td style={{ minWidth: "120px" }}>{item.type}</td>
+                        <tr key={item.id}>
+                          <td>{item.id}</td>
+                          <td>{item.room_no}</td>
+                          <td style={{ minWidth: "120px" }}>{item.room_type}</td>
                           <td style={{ minWidth: "140px" }}>{item.rate}</td>
                           <td style={{ minWidth: "600px" }}>{item.details}</td>
-                          <td style={{ minWidth: "120px" }}>
-                            {item.max_count}
+                          <td style={{ minWidth: "120px" }}>{item.max_guests}
                           </td>
 
                           {/* <td>{item.img_url}</td> */}
@@ -315,7 +311,7 @@ function Admin() {
                               className="bg-black text-white mx-2"
                               variant="custom"
                               onClick={() => {
-                                editRoomButton(item.room_id);
+                                editRoomButton(item.id);
                               }}
                             >
                               Edit
@@ -324,7 +320,7 @@ function Admin() {
                               className="bg-black text-white"
                               variant="custom"
                               onClick={() => {
-                                deleteRoom(item.room_id);
+                                deleteRoom(item.id);
                               }}
                             >
                               Delete
@@ -365,8 +361,8 @@ function Admin() {
                 <tbody>
                   {usersData &&
                     usersData.map((item) => (
-                      <tr key={item.user_id}>
-                        <td>{item.user_id}</td>
+                      <tr key={item.id}>
+                        <td>{item.id}</td>
                         {/* <td>{item.role}</td> */}
                         <td>{item.name}</td>
                         <td>{item.phone}</td>
