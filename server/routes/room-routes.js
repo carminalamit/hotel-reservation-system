@@ -1,12 +1,12 @@
 import express from "express";
 import pool from "../db.js";
 import multer from "multer";
-import path from "path";
+// import path from "path";
 
 const router = express.Router();
 
-console.log(process.env.IMAGE_FOLDER_PATH);
-const desktopPath = path.join("C:/Users/DELL/Desktop", "images");
+// console.log(process.env.IMAGE_FOLDER_PATH);
+// const desktopPath = path.join("C:/Users/DELL/Desktop", "images");
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });

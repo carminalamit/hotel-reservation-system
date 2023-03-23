@@ -204,10 +204,8 @@ function Admin() {
           <Tabs
             // defaultActiveKey="profile"
             // id="uncontrolled-tab-example"
-            striped
-            bordered
-            hover
-            variant="dark"
+            
+            style={{height: "43px", borderStyle: "none"}}
           >
             <Tab
               eventKey="bookings"
@@ -218,8 +216,8 @@ function Admin() {
                 <thead>
                   <tr>
                     <th>Booking Id</th>
-                    <th>User Id</th>
-                    <th>Room Id</th>
+                    <th>Guest Email</th>
+                    <th>Room No.</th>
                     <th>Check In</th>
                     <th>Check Out</th>
                     <th>Booking Date/Time</th>
@@ -232,8 +230,8 @@ function Admin() {
                     bookingData.map((item) => (
                       <tr key={item.id}>
                         <td>{item.id}</td>
-                        <td>{item.user_id}</td>
-                        <td>{item.room_id}</td>
+                        <td>{item.email}</td>
+                        <td>{item.room_no}</td>
                         <td>{moment(item.check_in).format("LL")}</td>
                         <td>{moment(item.check_out).format("LL")}</td>
                         <td>{moment(item.inserted_at).format("LLL")}</td>
@@ -255,7 +253,7 @@ function Admin() {
                               deleteBooking(item.id);
                             }}
                           >
-                            Delete
+                            Cancel
                           </Button>
                         </td>
                       </tr>

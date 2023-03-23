@@ -149,11 +149,7 @@ body {
 .date {
   height: 250px;
   width: 220px;
-  /* border-radius: 8px; */
   border: 2px solid black;
-  /* box-shadow: rgba(0, 0, 0, 0.35) 5px 10px 15px; */
-  /* border-radius: 10px; */
-  /* background: #e0e0e0; */
   box-shadow:  20px 20px 60px #bebebe,
              -20px -20px 60px #ffffff;
 }
@@ -184,5 +180,30 @@ body {
   background-color: rgb(238, 241, 243);
 }
 
+/* Book Modal Style */
+/* .pop-up1 { */
+  /* display: flex; */
+  /* align-items: center; */
+  /* margin: auto; */
+  /* width: 70%; */
+  /* font-weight: 500; */
+  /* width: 65% !important; */
+  /* height: 211px !important; */
+/* } */
+.pop-up2 {
+  margin: auto;
+  width: 300px;
+}
 
+.ty {
+  text-align: center !important;
+  font-size: 30px;
+  font-weight: 500;
+  margin-top: 8px;
+  margin-bottom: 20px;
+}
 
+.popup-body {
+  text-align: center;
+  font-weight: 600;
+}

@@ -1,6 +1,7 @@
-import { Modal, Form, Button } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { Modal, Form, Button, Dropdown } from "react-bootstrap";
+import { useState } from "react";
 import { app } from "../../lib/axios-config";
+import TimePicker from 'react-time-picker';
 
 const initialData = {
   room_no: "",
@@ -16,6 +17,7 @@ const initialData = {
 export function AddRoomModal({ show, onHide }) {
   // Edit data booking
   const [roomDetails, setRoomDetails] = useState(initialData);
+  const [value, onChange] = useState('00:00');
   console.log(roomDetails);
 
   const handleSubmit = async () => {
@@ -89,6 +91,34 @@ export function AddRoomModal({ show, onHide }) {
               }
               required
             />
+            {/* <Dropdown name="room_type"
+              type="text"
+              value={roomDetails.room_type}
+              onChange={(e) =>
+                setRoomDetails({
+                  ...roomDetails,
+                  room_type: e.target.value,
+                })
+              }
+              required>
+              <Dropdown.Toggle
+                variant="success"
+                id="dropdown-basic"
+                className="bg-white text-black border-dark"
+                style={{ width: "465px", textAlign: "start" }}
+                required
+              >
+                {roomDetails.room_type || "Select Room Type"}
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item>Deluxe Single Room</Dropdown.Item>
+                <Dropdown.Item>Deluxe Single Room</Dropdown.Item>
+                <Dropdown.Item>Double Room</Dropdown.Item>
+                <Dropdown.Item>Deluxe Double Room</Dropdown.Item>
+                <Dropdown.Item>Twin Room</Dropdown.Item>
+                <Dropdown.Item>Deluxe Twin Room</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown> */}
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
             <Form.Label>Rate</Form.Label>
@@ -124,16 +154,16 @@ export function AddRoomModal({ show, onHide }) {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
-            <Form.Label>Maximun guests</Form.Label>
+            <Form.Label>Maximum guests</Form.Label>
             <Form.Control
               className="border-dark"
-              name="max_count"
+              name="max_guests"
               type="text"
-              value={roomDetails.max_count}
+              value={roomDetails.max_guests}
               onChange={(e) =>
                 setRoomDetails({
                   ...roomDetails,
-                  max_count: e.target.value,
+                  max_guests: e.target.value,
                 })
               }
               required
@@ -141,19 +171,6 @@ export function AddRoomModal({ show, onHide }) {
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
             <Form.Label>Image</Form.Label>
-            {/* <Form.Control
-              className="border-dark"
-              name="images"
-              type="text"
-              value={roomDetails.images}
-              onChange={(e) =>
-                setRoomDetails({
-                  ...roomDetails,
-                  images: e.target.value,
-                })
-              }
-              required
-            /> */}
             <Form.Control
               className="border-dark"
               name="image"
@@ -165,7 +182,7 @@ export function AddRoomModal({ show, onHide }) {
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
             <Form.Label>Checkin Time</Form.Label>
-            <Form.Control
+            {/* <Form.Control
               className="border-dark"
               name="checkin_time"
               type="text"
@@ -177,7 +194,18 @@ export function AddRoomModal({ show, onHide }) {
                 })
               }
               required
-            />
+            /> */}
+            <div><TimePicker className="border-dark"
+              name="checkin_time"
+              type="text"
+              value={roomDetails.checkin_time}
+              onChange={(e) =>
+                setRoomDetails({
+                  ...roomDetails,
+                  checkin_time: e.target.value,
+                })
+              } 
+              /></div>
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
             <Form.Label>Checkout Time</Form.Label>

@@ -8,7 +8,7 @@ const router = express.Router();
 // READ
 router.get("/", async (req, res) => {
   try {
-    const booking = await pool.query("SELECT * FROM bookings");
+    const booking = await pool.query("SELECT bookings.id, email, room_no, check_in, check_out, bookings.updated_at, bookings.inserted_at FROM bookings INNER JOIN users ON bookings.user_id = users.id INNER JOIN rooms ON bookings.room_id = rooms.id");
     res.json({ bookings: booking.rows });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const booking = await pool.query("SELECT * FROM bookings WHERE id=$1", [
+    const booking = await pool.query("SELECT bookings.id, email, room_no, check_in, check_out, bookings.updated_at, bookings.inserted_at FROM bookings INNER JOIN users ON bookings.user_id = users.id INNER JOIN rooms ON bookings.room_id = rooms.id WHERE bookings.id=$1", [
       req.params.id,
     ]);
     res.json({ bookings: booking.rows[0] });

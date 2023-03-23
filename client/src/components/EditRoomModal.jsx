@@ -61,7 +61,7 @@ export function EditRoomModal({ show, onHide, selectedRoomData }) {
       </Modal.Header>
       <Modal.Body>
         <Form>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+          {/* <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
             <Form.Label>Room Id</Form.Label>
             <Form.Control
               className="border-dark"
@@ -76,7 +76,7 @@ export function EditRoomModal({ show, onHide, selectedRoomData }) {
               }
               disabled
             />
-          </Form.Group>
+          </Form.Group> */}
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
             <Form.Label>Room No.</Form.Label>
             <Form.Control

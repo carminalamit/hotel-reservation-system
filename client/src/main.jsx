@@ -6,7 +6,7 @@ import Admin  from './pages/Admin'
 import AdminLogin from './pages/AdminLogin'
 import Room from './pages/Room'
 import './index.css'
-import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements, redirect } from 'react-router-dom'
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { app } from "../../lib/axios-config";
 import { convertImageData } from "../util";
@@ -48,7 +48,7 @@ function Room() {
               </div>
               <Card.Body className="d-flex justify-content-between">
                 <Card.Title className="room-title">{data.room_type}</Card.Title>
-                <Card.Text  className="room-price">{data.rate}</Card.Text>
+                <Card.Text  className="room-price">{data.rate}/day</Card.Text>
               </Card.Body>
             </Card>
           </Row>

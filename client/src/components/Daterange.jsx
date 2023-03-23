@@ -4,7 +4,7 @@ import { app } from "../../lib/axios-config";
 import { useParams } from "react-router-dom";
 import BookModal from "./BookModal";
 import DatePicker from "react-datepicker";
-import { subDays, addDays } from "date-fns";
+import { subDays } from "date-fns";
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -13,11 +13,6 @@ function Daterange() {
   const newDate = subDays(new Date(), 5); // subtract 5 days from today's date
   console.log(newDate);
 
-  // To add days to a date
-  const newDate2 = addDays(new Date(), 5); // add 5 days to today's date
-
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(null);
   const [excludedDate, setExcludedDate] = useState([]);
 
   const onChangeCheckIn = (date) => {
@@ -49,7 +44,7 @@ function Daterange() {
 
   const handleClose = () => {
     setOpenModal(false);
-    window.location.reload()
+    window.location.reload();
   };
 
   const getBookingByRoomId = async () => {
@@ -81,12 +76,25 @@ function Daterange() {
           <h6
             style={{ fontSize: "17px", fontWeight: "bold", paddingTop: "15px" }}
           >
-            Select available dates
+            See availability
           </h6>
-          <Form className=""  style={{ marginTop: "25px" }}>
+          <Form className="" style={{ marginTop: "25px" }}>
             <Form.Group className="" controlId="exampleForm.ControlInput2">
               <div className="">
                 <div>
+                  {/* <Form.Group className="date-input">
+                    <Form.Control
+                      
+                      type="email"
+                      placeholder="name@example.com"
+                      name="email"
+                      autoComplete="email"
+                      required
+                    />
+                    <div className="invalid-feedback">
+                      Please enter your email
+                    </div>
+                  </Form.Group> */}
                   <DatePicker
                     className="date-input"
                     placeholderText="Check in"
@@ -114,7 +122,9 @@ function Daterange() {
             style={{ width: "80%" }}
             className="bg-black text-white"
             variant="custom"
-            onClick={() => {handleSubmit()}}
+            onClick={() => {
+              handleSubmit();
+            }}
           >
             Book now
           </Button>

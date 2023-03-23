@@ -18,7 +18,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/api/room/7
+GET http://localhost:3000/api/bookings/57
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJuYW1lIjoiTWluYSIsImVtYWlsIjoibGFtaXRjYXJtaW5hQGdtYWlsLmNvbSIsImlhdCI6MTY3NzY1Mjc2NywiZXhwIjoxNjc3NjUzMzY3fQ.nPuHXX_u906sQTpii6-RLtKiYboxOZzRjTMgHMFikos
 

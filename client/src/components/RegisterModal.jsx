@@ -3,7 +3,6 @@ import { useState } from "react";
 import { app } from "../../lib/axios-config";
 
 const initialData = {
-  // role: "GUEST",
   name: "",
   phoneNumber: "",
   email: "",
@@ -14,22 +13,27 @@ const initialData = {
 export function RegisterModal({ show, onHide }) {
   const [formData, setFormData] = useState(initialData);
   const [validated, setValidated] = useState(false);
+  // const [isError, setIsError] = useState("");
+
   const handleOnChange = (e) => {
-
     setFormData({ ...formData, [e.target.name]: e.target.value });
-
-    // if (formData.phoneNumber.length <= 11) {
-    // 	setFormData(formData.phoneNumber)
-    // }
   };
+
   const handleSubmit = async (event) => {
-    
+    // event.preventDefault()
     setValidated(true);
-
-	if (!formData.name || !formData.phoneNumber || !formData.email || !formData.password || !formData.confirmPassword) return;
-
-    if (formData.password !== formData.confirmPassword) return;
-
+    if (
+      !formData.name ||
+      !formData.phoneNumber ||
+      !formData.email ||
+      !formData.password ||
+      !formData.confirmPassword
+    )
+      return;
+    if (formData.password !== formData.confirmPassword) {
+      alert("Password do not match");
+      return;
+    }
     try {
       const res = await app.post("/api/users", formData);
       onHide();
@@ -65,10 +69,7 @@ export function RegisterModal({ show, onHide }) {
               autoComplete="name"
               required
             />
-            <Form.Control.Feedback type="invalid">
-				Please enter your name
-            </Form.Control.Feedback>
-            {/* <div className="invalid-feedback">Please enter your name</div> */}
+            <div className="invalid-feedback">Please enter your name</div>
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
             <Form.Label>Phone Number</Form.Label>
@@ -115,7 +116,7 @@ export function RegisterModal({ show, onHide }) {
             />
             <div className="invalid-feedback">Please enter your password</div>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput6">
+          <Form.Group className="mb-3">
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
               className="was-validated border-dark"
@@ -127,8 +128,28 @@ export function RegisterModal({ show, onHide }) {
               autoComplete="confirmpassword"
               required
             />
-            <div className="invalid-feedback">Please confirm password</div>
+            <div className="invalid-feedback">Password do not match</div>
           </Form.Group>
+          {/* <ValidatedInput
+            type="password"
+            name="password"
+            label="Password"
+            validate="required,isLength:6:60"
+            errorHelp={{
+              required: "Please specify a password",
+              isLength: "Password must be at least 6 characters"
+          }}
+          />
+          <ValidatedInput
+            type="password"
+            name="confirmPassword"
+            label="Confirm Password"
+            // Validate can be a function as well
+            validate={(val, context) => val === context.password}
+            // If errorHelp property is a string, then it is used
+            // for all possible validation errors
+            errorHelp="Passwords do not match"
+          /> */}
         </Form>
       </Modal.Body>
       <Modal.Footer>
@@ -137,7 +158,7 @@ export function RegisterModal({ show, onHide }) {
           </Button> */}
         <Button
           className="bg-black text-white"
-		//   type="submit"
+          //   type="submit"
           variant="custom"
           onClick={handleSubmit}
           // onSubmit={onHide}

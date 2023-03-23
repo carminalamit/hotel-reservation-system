@@ -35,11 +35,11 @@ export function EditBookingModal({ show, onHide, selectedBookingData }) {
   return (
     <Modal className="modal-font" show={show} onHide={onHide}>
       <Modal.Header closeButton>
-        <Modal.Title>Edit details</Modal.Title>
+        <Modal.Title>Edit booking date</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form className="needs-validation">
-          <Form.Group
+          {/* <Form.Group
             className="mb-3 was-validated"
             controlId="exampleForm.ControlInput2"
           >
@@ -48,7 +48,6 @@ export function EditBookingModal({ show, onHide, selectedBookingData }) {
               className="border-dark"
               name="id"
               type="integer"
-              // placeholder="input name"
               value={bookingDetail.id}
               onChange={(e) =>
                 bookingDetailChange({
@@ -56,12 +55,10 @@ export function EditBookingModal({ show, onHide, selectedBookingData }) {
                   id: e.target.value,
                 })
               }
-              // autoComplete="name"
               disabled
             />
-            {/* <div className="invalid-feedback">Please enter your name</div> */}
-          </Form.Group>
-          <Form.Group
+          </Form.Group> */}
+          {/* <Form.Group
             className="mb-3 was-validated"
             controlId="exampleForm.ControlInput3"
           >
@@ -70,7 +67,6 @@ export function EditBookingModal({ show, onHide, selectedBookingData }) {
               className="border-dark"
               name="user_id"
               type="integer"
-              // placeholder="09*********"
               value={bookingDetail.user_id}
               onChange={(e) =>
                 bookingDetailChange({
@@ -78,12 +74,10 @@ export function EditBookingModal({ show, onHide, selectedBookingData }) {
                   user_id: e.target.value,
                 })
               }
-              // autoComplete="number"
               disabled
             />
-            {/* <div className="invalid-feedback">Please enter your number</div> */}
-          </Form.Group>
-          <Form.Group
+          </Form.Group> */}
+          {/* <Form.Group
             className="mb-3 was-validated"
             controlId="exampleForm.ControlInput4"
           >
@@ -92,7 +86,6 @@ export function EditBookingModal({ show, onHide, selectedBookingData }) {
               className="border-dark"
               name="room_id"
               type="integer"
-              // placeholder="email@gmail.com"
               value={bookingDetail.room_id}
               onChange={(e) =>
                 bookingDetailChange({
@@ -100,11 +93,9 @@ export function EditBookingModal({ show, onHide, selectedBookingData }) {
                   room_id: e.target.value,
                 })
               }
-              // autoComplete="email"
               disabled
             />
-            {/* <div className="invalid-feedback">Check in</div> */}
-          </Form.Group>
+          </Form.Group> */}
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
             <Form.Label>Check in</Form.Label>
             <Form.Control
