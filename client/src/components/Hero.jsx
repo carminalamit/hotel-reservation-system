@@ -20,7 +20,7 @@ function UncontrolledExample() {
       <Carousel.Item className="hero">
         <img
           className="d-block w-100 h-100"
-          src="./src/assets/room4.jpg"
+          src="./src/assets/room-2.jpg"
           alt="Second slide"
         />
 
@@ -34,7 +34,7 @@ function UncontrolledExample() {
       <Carousel.Item className="hero">
         <img
           className="d-block w-100 h-100"
-          src="./src/assets/room3.jpg"
+          src="./src/assets/room2.jpg"
           alt="Third slide"
         />
         <Carousel.Caption
@@ -48,7 +48,7 @@ function UncontrolledExample() {
         <img
           className="d-block w-100 h-100"
           src="./src/assets/pool.jpg"
-          alt="Third slide"
+          alt="Fourth slide"
         />
         <Carousel.Caption
           style={{ background: "linear-gradient(45deg, black, transparent" }}
@@ -61,7 +61,7 @@ function UncontrolledExample() {
         <img
           className="d-block w-100 h-100"
           src="./src/assets/lobby.jpg"
-          alt="Third slide"
+          alt="Fifth slide"
         />
         <Carousel.Caption
           style={{ background: "linear-gradient(45deg, black, transparent" }}
