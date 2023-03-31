@@ -1,24 +1,22 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
+import { FaCheck } from "react-icons/fa";
 
 function BookModals({ show, handleClose }) {
   return (
-    <Modal className="pop-up1" show={show} onHide={handleClose}>
-      <div className="pop-up2">
-        {/* <Modal.Header className="ty"> */}
-          <h2 className="ty">Thank You!</h2>
-        {/* </Modal.Header> */}
-        <p className="popup-body">Your room was booked successfully!</p>
-        <Modal.Footer>
-          <Button
-            style={{ width: "285px" }}
-            className="bg-black text-white"
-            variant="secondary"
-            onClick={handleClose}
-          >
-            OK
-          </Button>
-        </Modal.Footer>
+    <Modal
+      className="popup center"
+      show={show}
+      onHide={handleClose}
+      style={{ width: "350px"}}
+    >
+      <div className="icon">
+        <FaCheck />
+      </div>
+      <div className="title">Thank You!</div>
+      <div className="description">Your room was booked successfully.</div>
+      <div className="ok-btn">
+        <button id="popup-btn">OK</button>
       </div>
     </Modal>
   );
