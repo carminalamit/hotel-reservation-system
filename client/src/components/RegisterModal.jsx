@@ -46,7 +46,7 @@ export function RegisterModal({ show, onHide }) {
   console.log(formData);
 
   return (
-    <Modal className="modal-font" show={show} onHide={onHide}>
+    <Modal className="modal-font" show={show} onHide={onHide}  backdrop="false">
       <Modal.Header closeButton>
         <Modal.Title>Register</Modal.Title>
       </Modal.Header>
@@ -55,12 +55,13 @@ export function RegisterModal({ show, onHide }) {
           noValidate
           validated={validated}
           onSubmit={handleSubmit}
-          className="needs-validation"
+          // className="needs-validation"
         >
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+          <Form.Group className="mb-3">
             <Form.Label>Name</Form.Label>
             <Form.Control
-              className="was-validated border-dark"
+              style={{backgroundImage: "none"}}
+              className="border-dark"
               name="name"
               type="text"
               placeholder="input name"
@@ -74,6 +75,7 @@ export function RegisterModal({ show, onHide }) {
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
             <Form.Label>Phone Number</Form.Label>
             <Form.Control
+              style={{backgroundImage: "none"}}
               className="was-validated border-dark"
               maxLength={11}
               name="phoneNumber"
@@ -91,6 +93,7 @@ export function RegisterModal({ show, onHide }) {
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
             <Form.Label>Email</Form.Label>
             <Form.Control
+              style={{backgroundImage: "none"}}
               className="was-validated border-dark"
               name="email"
               type="email"
@@ -105,6 +108,7 @@ export function RegisterModal({ show, onHide }) {
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput5">
             <Form.Label>Password</Form.Label>
             <Form.Control
+              style={{backgroundImage: "none"}}
               className="was-validated border-dark"
               name="password"
               type="password"
@@ -119,6 +123,7 @@ export function RegisterModal({ show, onHide }) {
           <Form.Group className="mb-3">
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
+              style={{backgroundImage: "none"}}
               className="was-validated border-dark"
               name="confirmPassword"
               type="password"
@@ -130,38 +135,13 @@ export function RegisterModal({ show, onHide }) {
             />
             <div className="invalid-feedback">Password do not match</div>
           </Form.Group>
-          {/* <ValidatedInput
-            type="password"
-            name="password"
-            label="Password"
-            validate="required,isLength:6:60"
-            errorHelp={{
-              required: "Please specify a password",
-              isLength: "Password must be at least 6 characters"
-          }}
-          />
-          <ValidatedInput
-            type="password"
-            name="confirmPassword"
-            label="Confirm Password"
-            // Validate can be a function as well
-            validate={(val, context) => val === context.password}
-            // If errorHelp property is a string, then it is used
-            // for all possible validation errors
-            errorHelp="Passwords do not match"
-          /> */}
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        {/* <Button variant="secondary" onClick={handleClose2}>
-            Close
-          </Button> */}
         <Button
           className="bg-black text-white"
-          //   type="submit"
           variant="custom"
           onClick={handleSubmit}
-          // onSubmit={onHide}
         >
           Submit
         </Button>

@@ -202,15 +202,12 @@ function Admin() {
         </h1>
         <div className="m-3">
           <Tabs
-            // defaultActiveKey="profile"
-            // id="uncontrolled-tab-example"
-            
             style={{height: "43px", borderStyle: "none"}}
           >
             <Tab
               eventKey="bookings"
               title="Bookings"
-              tabClassName="text-light bg-dark"
+              tabClassName="text-light bg-dark rounded-0"
             >
               <Table striped bordered hover variant="dark">
                 <thead>
@@ -264,7 +261,7 @@ function Admin() {
             <Tab
               eventKey="rooms"
               title="Rooms"
-              tabClassName="text-light bg-dark"
+              tabClassName="text-light bg-dark rounded-0"
               onClick={toggleShow}
             >
               <button
@@ -342,7 +339,7 @@ function Admin() {
             <Tab
               eventKey="users"
               title="Users"
-              tabClassName="text-light bg-dark"
+              tabClassName="text-light bg-dark rounded-0"
             >
               <Table striped bordered hover variant="dark">
                 <thead>
