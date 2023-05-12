@@ -12,7 +12,15 @@
 
 **Tech used:** React, Bootstrap, Node, Express and PostgreSQL
 
-Here's where you can go to town on how you actually built this thing. Write as much as you can here, it's totally fine if it's not too much just make sure you write *something*. If you don't have too much experience on your resume working on the front end that's totally fine. This is where you can really show off your passion and make up for that ten fold.
+To start with, I chose React as my front-end framework due to its ease of use and flexibility. React's component-based structure made it easy for me to break down the project into smaller, reusable components, which helped me keep the code clean and maintainable. Additionally, React's virtual DOM and efficient re-rendering system allowed me to build a fast and responsive user interface.
+
+To style the project, I used Bootstrap, which is a popular CSS framework that provides a wide range of pre-built UI components and styles. Bootstrap's grid system helped me create a responsive layout that adapts to different screen sizes and devices. Using Bootstrap's pre-built styles and components saved me a lot of time and effort, allowing me to focus on the core functionality of the project.
+
+For the back-end, I used Node and Express, which are popular server-side frameworks for JavaScript. Node's event-driven architecture and non-blocking I/O allowed me to build a scalable and high-performance server that could handle multiple requests simultaneously. Express, on the other hand, provided me with a clean and simple API for handling HTTP requests and responses, making it easy to build RESTful APIs.
+
+Finally, for the database, I used PostgreSQL, which is a powerful and open-source relational database. PostgreSQL's ACID compliance and support for complex queries and transactions made it an ideal choice for this project. Using an ORM like Sequelize helped me interact with the database in a more intuitive and efficient way, abstracting away much of the low-level details of SQL.
+
+Overall, this project was a great opportunity for me to showcase my skills and passion for full-stack development. By leveraging the power of React, Bootstrap, Node, Express, and PostgreSQL, I was able to build a fast, responsive, and scalable web application that meets the needs of its users.
 
 ## Optimizations
 *(optional)*
