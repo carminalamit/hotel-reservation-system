@@ -5,16 +5,17 @@ This project is design for users to make hotel room reservation quickly and easi
 <!--**Link to project:** http://recruiters-love-seeing-live-demos.com/ -->
 
 ![s3](https://github.com/carminalamit/hotel-reservation-system/assets/95231683/24882a6e-70fd-4921-a58f-b95e03f502f2)
+
 Features:
-Users - users must register their details, after successful registration they can access the site by logging in. Redirecting them to homescreen in this page they can choose their desire room and can make reservation after choosing prefer dates. Chosen and past dates by visitors will automatically disabled.
+
+Users Page 
+  - users must register their details, after successful registration they can access the site by logging in. Redirecting them to homescreen in this page they can choose their desire room and can make reservation after choosing prefer dates. Chosen and past dates by visitors will automatically disabled.
 
 
 ![s4](https://github.com/carminalamit/hotel-reservation-system/assets/95231683/23acca6a-80a8-426c-8ed8-f4e467fbc556)
-Admin Panel - hotel staffs can see booking details
-edit and cancel bookings and changes will
-automatically update on users page. Admin can easily
-add, update and delete room listings on users page
-and able to see all who register on the website.
+
+Admin Panel 
+  - hotel staffs can see booking details edit and cancel bookings and changes will automatically update on users page. Admin can easily add, update and delete room listings on users page and able to see all who register on the website.
 
 
 ## How It's Made:
