@@ -1,6 +1,8 @@
 # Richmonde Hotel and Suites (Fullstack Web App)
 
+
 This project is design for users to make hotel room reservation quickly and easily. It can track customer data, manage bookings and check  guests in and out. With this web app, hotels can create an efficient, streamlined system for reservation management.
+
 
 <!--**Link to project:** http://recruiters-love-seeing-live-demos.com/ -->
 
@@ -16,6 +18,7 @@ Users Page
 
 Admin Panel 
   - hotel staffs can see booking details edit and cancel bookings and changes will automatically update on users page. Admin can easily add, update and delete room listings on users page and able to see all who register on the website.
+  - 
 
 
 ## How It's Made:
