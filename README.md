@@ -1,11 +1,20 @@
-# Richmonde Hotel and Suites
+# Richmonde Hotel and Suites (Fullstack Web App)
+
+This project is design for users to make hotel room reservation quickly and easily. It can track customer data, manage bookings and check  guests in and out. With this web app, hotels can create an efficient, streamlined system for reservation management.
 
 <!--**Link to project:** http://recruiters-love-seeing-live-demos.com/ -->
 
 ![s3](https://github.com/carminalamit/hotel-reservation-system/assets/95231683/24882a6e-70fd-4921-a58f-b95e03f502f2)
+Features:
+Users - users must register their details, after successful registration they can access the site by logging in. Redirecting them to homescreen in this page they can choose their desire room and can make reservation after choosing prefer dates. Chosen and past dates by visitors will automatically disabled.
 
 
 ![s4](https://github.com/carminalamit/hotel-reservation-system/assets/95231683/23acca6a-80a8-426c-8ed8-f4e467fbc556)
+Admin Panel - hotel staffs can see booking details
+edit and cancel bookings and changes will
+automatically update on users page. Admin can easily
+add, update and delete room listings on users page
+and able to see all who register on the website.
 
 
 ## How It's Made:
@@ -22,10 +31,10 @@ Finally, for the database, I used PostgreSQL, which is a powerful and open-sourc
 
 Overall, this project was a great opportunity for me to showcase my skills and passion for full-stack development. By leveraging the power of React, Bootstrap, Node, Express, and PostgreSQL, I was able to build a fast, responsive, and scalable web application that meets the needs of its users.
 
-## Optimizations
+<!-- ## Optimizations
 *(optional)*
 
-You don't have to include this section but interviewers *love* that you can not only deliver a final product that looks great but also functions efficiently. Did you write something then refactor it later and the result was 5x faster than the original implementation? Did you cache your assets? Things that you write in this section are **GREAT** to bring up in interviews and you can use this section as reference when studying for technical interviews!
+You don't have to include this section but interviewers *love* that you can not only deliver a final product that looks great but also functions efficiently. Did you write something then refactor it later and the result was 5x faster than the original implementation? Did you cache your assets? Things that you write in this section are **GREAT** to bring up in interviews and you can use this section as reference when studying for technical interviews! -->
 
 ## Lessons Learned:
 
