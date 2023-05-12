@@ -3,7 +3,8 @@ Write a short sentence or two about this project and what it does. Be sure to in
 
 **Link to project:** http://recruiters-love-seeing-live-demos.com/
 
-![alt tag](http://placecorgi.com/1200/650)
+![alt tag](![Screenshot 2023-03-30 235233](https://github.com/carminalamit/hotel-reservation-system/assets/95231683/ce94e2b6-d04d-4691-853d-f8d13ffd66b1)
+)
 
 ## How It's Made:
 
