@@ -3,7 +3,7 @@
 <!--**Link to project:** http://recruiters-love-seeing-live-demos.com/ -->
 
 (![Screenshot 2023-03-30 235233](https://github.com/carminalamit/hotel-reservation-system/assets/95231683/ce94e2b6-d04d-4691-853d-f8d13ffd66b1)
-)
+
 
 ## How It's Made:
 
